@@ -1,0 +1,77 @@
+loadkeys br-abnt2
+
+iwctl
+
+timedatectl set-ntp true
+
+fdisk /dev/sda
+mkfs.fat -F32 /dev/sda1
+mkswap /dev/sda2
+swapon /dev/sda2
+mkfs.ext4 /dev/sda3
+mount /dev/sda3 /mnt
+
+pacman -Sy
+pacstrap /mnt base linux-lts linux-lts-headers linux-firmware sudo nano dialog
+
+genfstab -U /mnt >> /mnt/etc/fstab
+
+arch-chroot /mnt
+
+ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+hwclock --systohc
+nano /etc/locale.gen
+locale-gen
+nano /etc/locale.conf
+	LANG=en_US.UTF-8
+
+echo oldpc > /etc/hostname
+nano /etc/hosts
+	127.0.0.1      localhost
+	::1            localhost
+	127.0.1.1      oldpc
+
+passwd
+useradd -m deh
+passwd deh
+usermod -aG wheel,audio,video,optical,storage deh
+EDITOR=nano visudo
+	%wheel ALL=(ALL) ALL
+
+nano /etc/vconsole.conf
+	KEYMAP=br-abnt2
+
+grub efibootmgr os-prober mtools
+mkdir /boot/efi
+mount /dev/sda1 /boot/efi
+grub-install --target=x86_64-efi --bootloader-id=grub_uefi
+grub-mkconfig -o /boot/grub/grub.cfg
+
+intel-ucode xorg xorg-server xorg-xinit xorg-apps xorg-xrandr arandr nvidia-lts nvidia-utils networkmanager pulseaudio pulseaudio-alsa pavucontrol alsa-utils udiskie ntfs-3g i3-gaps i3status i3lock ttf-dejavu bash-completion polkit lxsession nitrogen lxappearance thunar thunar-volman ffmpegthumbnailer alacritty terminator dunst neovim mousepad leafpad epdfview firefox lightdm lightdm-gtk-greeter base-devel git vim neovim
+
+nano /etc/lightdm/lightdm.conf
+	greeter-session=lightdm-gtk-greeter
+	
+systemctl enable NetworkManager
+systemctl enable lightdm
+systemctl enable systemd-networkd
+systemctl enable systemd-resolved
+systemctl enable iwd
+
+echo lxsession > ~/.xsession
+
+exit
+umount /mnt
+reboot
+
+git clone https://aur.archlinux.org/yay-git.git
+ls -la
+cd yay-git
+makepkg -si
+
+add lxsession to .xsession
+
+cp ect/X11/xinit/xinitrc ~/deh.xinitrc
+sudo chown deh:deh.xinitrc
+nano .xinitrc
+	.bash_profile: [[ [[ $(fgconsole 2>/dev/null) == 1 ]] ]] && exec startx -- vt1
