@@ -1,0 +1,2 @@
+udiskie &
+exec i3
