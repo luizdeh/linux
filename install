@@ -49,7 +49,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 sudo pacman --needed --ask 4 -Sy - < pkglist.txt
 
-intel-ucode xorg xorg-server xorg-xinit xorg-apps xorg-xrdb xorg-xkill xorg-xprop xorg-xrandr arandr nvidia-lts nvidia-utils networkmanager pulseaudio pulseaudio-alsa pavucontrol alsa-utils udiskie ntfs-3g i3-gaps i3status i3lock bash bash-completion polkit lxsession nitrogen lxappearance thunar thunar-volman ffmpegthumbnailer alacritty terminator dunst neovim mousepad leafpad epdfview firefox lightdm lightdm-gtk-greeter base-devel git vlc viewnior pcmanfm xfce4-power-manager gnome-disk-utility gparted volumeicon ranger code redshift xarchiver rofi bashtop exa zsh network-manager-applet scrot xdotool  qalculate-gtk
+intel-ucode xorg xorg-server xorg-xinit xorg-apps xorg-xrdb xorg-xkill xorg-xprop xorg-xrandr arandr nvidia-lts nvidia-utils networkmanager pulseaudio pulseaudio-alsa pavucontrol alsa-utils udiskie ntfs-3g i3-gaps i3status i3lock bash bash-completion polkit lxsession nitrogen lxappearance thunar thunar-volman ffmpegthumbnailer alacritty terminator dunst neovim mousepad leafpad epdfview firefox lightdm lightdm-gtk-greeter base-devel git vlc viewnior pcmanfm xfce4-power-manager gnome-disk-utility gparted volumeicon ranger code redshift xarchiver rofi bashtop exa zsh network-manager-applet scrot xdotool qalculate-gtk moc
 
 arc-gtk-theme
 arc-icon-theme
