@@ -11,8 +11,8 @@ swapon /dev/sda2
 mkfs.ext4 /dev/sda3
 mount /dev/sda3 /mnt
 
-pacman -Sy
-pacstrap /mnt base linux-lts linux-lts-headers linux-firmware sudo nano dialog
+pacstrap /mnt base linux-lts linux-lts-headers linux-firmware 
+pacman -Syu sudo nano dialog
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
@@ -47,16 +47,25 @@ mount /dev/sda1 /boot/efi
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi
 grub-mkconfig -o /boot/grub/grub.cfg
 
-intel-ucode xorg xorg-server xorg-xinit xorg-apps xorg-xrandr arandr nvidia-lts nvidia-utils networkmanager pulseaudio pulseaudio-alsa pavucontrol alsa-utils udiskie ntfs-3g i3-gaps i3status i3lock ttf-dejavu bash-completion polkit lxsession nitrogen lxappearance thunar thunar-volman ffmpegthumbnailer alacritty terminator dunst neovim mousepad leafpad epdfview firefox lightdm lightdm-gtk-greeter base-devel git vim neovim
+sudo pacman --needed --ask 4 -Sy - < pkglist.txt
+
+intel-ucode xorg xorg-server xorg-xinit xorg-apps xorg-xrdb xorg-xkill xorg-xprop xorg-xrandr arandr nvidia-lts nvidia-utils networkmanager pulseaudio pulseaudio-alsa pavucontrol alsa-utils udiskie ntfs-3g i3-gaps i3status i3lock bash bash-completion polkit lxsession nitrogen lxappearance thunar thunar-volman ffmpegthumbnailer alacritty terminator dunst neovim mousepad leafpad epdfview firefox lightdm lightdm-gtk-greeter base-devel git vlc viewnior pcmanfm xfce4-power-manager gnome-disk-utility gparted volumeicon ranger code redshift xarchiver rofi bashtop exa zsh network-manager-applet scrot xdotool  qalculate-gtk
+
+arc-gtk-theme
+arc-icon-theme
+otf-font-awesome
+ttf-dejavu
+ttf-liberation
+ttf-hack
 
 nano /etc/lightdm/lightdm.conf
 	greeter-session=lightdm-gtk-greeter
 	
+systemctl start NetworkManager.service
 systemctl enable NetworkManager
 systemctl enable lightdm
-systemctl enable systemd-networkd
-systemctl enable systemd-resolved
-systemctl enable iwd
+# systemctl enable systemd-networkd
+# systemctl enable systemd-resolved
 
 echo lxsession > ~/.xsession
 
@@ -69,9 +78,12 @@ ls -la
 cd yay-git
 makepkg -si
 
-add lxsession to .xsession
+yay -S clipit brave-bin
 
-cp ect/X11/xinit/xinitrc ~/deh.xinitrc
-sudo chown deh:deh.xinitrc
-nano .xinitrc
-	.bash_profile: [[ [[ $(fgconsole 2>/dev/null) == 1 ]] ]] && exec startx -- vt1
+https://github.com/MatMoul/g810-led/blob/master/INSTALL.md
+
+# cp ect/X11/xinit/xinitrc ~/deh.xinitrc
+# sudo chown deh:deh.xinitrc
+# nano .xinitrc
+# 	.bash_profile: [[ [[ $(fgconsole 2>/dev/null) == 1 ]] ]] && exec startx -- vt1
+	
