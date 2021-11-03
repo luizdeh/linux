@@ -11,7 +11,7 @@ swapon /dev/sda2
 mkfs.ext4 /dev/sda3
 mount /dev/sda3 /mnt
 
-pacstrap /mnt base linux-lts linux-lts-headers linux-firmware 
+pacstrap /mnt base linux linux-headers linux-firmware 
 pacman -Syu sudo nano dialog
 
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -47,7 +47,7 @@ mount /dev/sda1 /boot/efi
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi
 grub-mkconfig -o /boot/grub/grub.cfg
 
-intel-ucode xorg xorg-server xorg-xinit xorg-apps xorg-xrdb xorg-xkill xorg-xprop xorg-xrandr arandr nvidia-lts nvidia-utils networkmanager pulseaudio pulseaudio-alsa pavucontrol alsa-utils udiskie ntfs-3g i3-gaps i3status i3lock bash bash-completion polkit lxsession nitrogen lxappearance thunar thunar-volman ffmpegthumbnailer alacritty terminator dunst neovim mousepad leafpad epdfview firefox lightdm lightdm-gtk-greeter base-devel git vlc viewnior pcmanfm xfce4-power-manager gnome-disk-utility gparted volumeicon ranger code redshift xarchiver rofi bashtop exa zsh network-manager-applet scrot xdotool qalculate-gtk moc gfvs simplescreenrecorder qbittorrent
+intel-ucode xorg xorg-server xorg-xinit xorg-apps xorg-xrdb xorg-xkill xorg-xprop xorg-xrandr arandr nvidia nvidia-utils networkmanager pulseaudio pulseaudio-alsa pavucontrol alsa-utils udiskie ntfs-3g i3-gaps i3status i3lock bash bash-completion polkit lxsession nitrogen lxappearance thunar thunar-volman ffmpegthumbnailer alacritty terminator dunst neovim mousepad leafpad epdfview firefox lightdm lightdm-gtk-greeter base-devel git vlc viewnior pcmanfm xfce4-power-manager gnome-disk-utility gparted volumeicon ranger code redshift xarchiver rofi bashtop exa zsh network-manager-applet scrot xdotool qalculate-gtk moc gfvs simplescreenrecorder qbittorrent
 
 arc-gtk-theme
 arc-icon-theme
