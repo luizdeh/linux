@@ -2,40 +2,39 @@ set $mod Mod4
 set $mod1 Mod1
 
 font pango:monospace 9
-
 workspace_layout default
-gaps inner 2
-gaps outer 1
+gaps inner 10
+gaps outer 2
 default_border pixel 0
 hide_edge_borders both
 default_floating_border pixel 0
 
 focus_follows_mouse no
 floating_modifier $mod
+bindsym $mod+h split h;exec notify-send 'tile horizontally'
+bindsym $mod+v split v;exec notify-send 'tile vertically'
+bindsym $mod+f fullscreen toggle
+bindsym $mod+$mod1+f floating toggle
+bindsym $mod+$mod1+u focus mode_toggle
+bindsym $mod+a focus parent
 
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
-bindsym $mod+Shift+q kill
-
-#exec --no-startup-id setxkbmap br
-exec --no-startup-id numlockx on
 exec --no-startup-id nm-applet
 exec --no-startup-id redshift-gtk
 exec --no-startup-id volumeicon
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id dunst
 exec --no-startup-id clipit
-#exec --no-startup-id xautolock -time 10 -locker blurlock
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id brave
-exec --no-startup-id g213-led -r 1 00ff00
-exec --no-startup-id g213-led -r 2 00ff00
-exec --no-startup-id g213-led -r 3 00ff00
-exec --no-startup-id g213-led -r 4 00ffff
-exec --no-startup-id g213-led -r 5 ff0000
+#exec --no-startup-id xautolock -time 10 -locker blurlock
+#exec --no-startup-id setxkbmap br
+#exec --no-startup-id numlockx on
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-#bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+q kill
+
 bindsym $mod1+space exec --no-startup-id rofi -no-lazy-grab -show drun
 bindsym $mod+space exec --no-startup-id rofi -no-lazy-grab -show window
 bindsym $mod+Return exec alacritty
@@ -46,31 +45,38 @@ bindsym $mod+Ctrl+n exec leafpad
 bindsym $mod+Ctrl+p exec mousepad
 bindsym $mod+i exec mousepad ~/.config/i3/config
 bindsym $mod+Ctrl+a workspace $ws6; exec thunar "Games/magic-the-gathering-arena/drive_c/Program Files/Wizards of the Coast/MTGA/MTGALauncher"
+bindsym $mod+l exec betterlockscreen -l dim
+#bindsym $mod+d exec --no-startup-id dmenu_run
 
 bindsym Print exec --no-startup-id scrot '%Y.%m.%d_scrot.png' -e 'mf $f ~/Pictures/Screenshots/'
-bindsym $mod+Print --release exec --no-startup-id scrot -w
-bindsym $mod+Shift+Print --release exec --no-startup-id scrot -s
+bindsym $mod+Print --release exec --no-startup-id scrot -w '%Y.%m.%d_scrot.png' -e 'mf $f ~/Pictures/Screenshots/'
+bindsym $mod+Shift+Print --release exec --no-startup-id scrot -s '%Y.%m.%d_scrot.png' -e 'mf $f ~/Pictures/Screenshots/'
 
+bindsym $mod+KP_Enter exec mocp -G
+bindsym $mod+KP_Subtract exec mocp -r
+bindsym $mod+KP_Add exec mocp -f
+#bindsym XF86AudioPause exec mocp -P
 #bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set 'Master' 5%+
 #bindsym XF86AudioLowerVolume exec --no-startup-id amixer set 'Master' 5%-
 #bindsym XF86AudioMute exec --no-startup-id amixer set 'Master' mute
-bindsym $mod+KP_Enter exec mocp -G
-#bindsym XF86AudioPause exec mocp -P
-bindsym $mod+KP_Subtract exec mocp -r
-bindsym $mod+KP_Add exec mocp -f
 
 for_window [urgent=latest] focus
+for_window [window_role="pop-up"] floating enable 
+for_window [window_role="app"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [title="Preferences$"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable
 for_window [class="Lxappearance"] floating enable sticky enable
 for_window [class="Thunar"] floating enable
 for_window [title="alsamixer"] floating enable
 for_window [class="Spotify"] move container to workspace $ws8
 for_window [class="Steam"] move container to workspace $ws5
-#for_window [class="Lutris"] floating enable, move container to workspace $ws5
+for_window [class="Lutris"] floating enable, move container to workspace $ws5
 for_window [class="(?i)virtualbox"] floating enable
 for_window [class="^Viewnior$"] floating enable
 for_window [class="Leafpad"] floating enable, resize set 800 600
 for_window [class="Terminator"] floating enable, resize set 800 600
+for_window [class="SimpleScreenRecorder"] floating enable
 
 assign [class="Mousepad"] $ws4
 assign [class="code-oss"] $ws3
@@ -80,10 +86,15 @@ assign [class="Pcmanfm"] $ws7
 assign [class="Steam"] $ws5
 assign [class="Lutris"] $ws5
 
-for_window [window_role="pop-up"] floating enable 
-for_window [window_role="app"] floating enable
-for_window [window_role="task_dialog"] floating enable
-for_window [title="Preferences$"] floating enable
+bindsym $mod+0 mode "$mode_system"
+set $mode_system (l)ock, (r)eboot, s(u)spend, (s)hutdown
+mode "$mode_system" {
+    bindsym u exec --no-startup-id i3exit suspend, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym s exec --no-startup-id i3exit shutdown, mode "default"
+    bindsym l exec --no-startup-id betterlockscreen -l dim
+    bindsym Escape mode "default"
+}
 
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -100,31 +111,18 @@ bindsym $mod+$mod1+Down resize grow height 50 px or 5 ppt
 bindsym $mod+$mod1+Up resize shrink height 50 px or 5 ppt
 bindsym $mod+$mod1+Right resize grow width 50 px or 5 ppt
 
-workspace_auto_back_and_forth yes
-bindsym $mod+b workspace back_and_forth
-bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
-
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
+workspace_auto_back_and_forth yes
+bindsym $mod+b workspace back_and_forth
+bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
-
-bindsym $mod+h split h;exec notify-send 'tile horizontally'
-bindsym $mod+v split v;exec notify-send 'tile vertically'
-
-bindsym $mod+f fullscreen toggle
-
-bindsym $mod+$mod1+f floating toggle
-
-bindsym $mod+$mod1+u focus mode_toggle
-
-bindsym $mod+a focus parent
 
 set $ws1 1: 1: 
 set $ws2 2: 2: 
 set $ws3 3: 3: 
-#set $ws4 4: 
 set $ws4 4: 4: 
 set $ws5 5: 5: 
 set $ws6 6: 6: ⚡
@@ -167,6 +165,7 @@ set $white               #ffffff
 set $yellow              #ffff00
 set $red                 #ff0000
 set $green               #4bfd4b
+set $purple		 #a64ca6
 
 bar {
         status_command i3status -c ~/.config/i3status/config
@@ -176,26 +175,9 @@ bar {
 	colors {
 		background 		$black
 		separator 		$black
-		focused_workspace	$grey	$black	$green
-		active_workspace	$black	$black	$grey
-		inactive_workspace	$black	$black	$grey
-		urgent_workspace	$black	$green	$black
+		focused_workspace	$green	$green	$black
+		active_workspace	$black	$black	$lgrey
+		inactive_workspace	$black	$black	$lgrey
+		urgent_workspace	$purple	$purple	$white
 	}
 }
-
-#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-
-bindsym $mod+0 mode "$mode_system"
-set $mode_system (l)ock, (r)eboot, s(u)spend, (s)hutdown
-mode "$mode_system" {
-    bindsym u exec --no-startup-id i3exit suspend, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym s exec --no-startup-id i3exit shutdown, mode "default"
-    bindsym l exec --no-startup-id blurlock
-    bindsym Escape mode "default"
-}
-
-# change container layout (stacked, tabbed, toggle split)
-#bindsym $mod+s layout stacking
-#bindsym $mod+w layout tabbed
-#bindsym $mod+e layout toggle split
