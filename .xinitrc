@@ -1,2 +1,0 @@
-udiskie &
-exec i3
