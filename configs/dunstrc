@@ -2,10 +2,10 @@
     monitor = 0
     follow = mouse
     
-    width = 300
-    height = 200
+    width = 400
+    height = 150
     origin = top-center
-    offset = 0x35D
+    offset = 0x35
     scale = 0
     indicate_hidden = yes
     transparency = 40
