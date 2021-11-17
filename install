@@ -60,7 +60,7 @@ ls -la
 cd yay-git
 makepkg -si
 
-yay -S clipit brave-bin g810-led-git
+yay -S clipit brave-bin g810-led-git picom-ibhagwan-git
 
 
 
