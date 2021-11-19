@@ -1,0 +1,13 @@
+sudo mkdir -p /usr/local/bin/
+
+mkdir -p ~/.config/rofi/scripts/
+
+mv ~/powermenu/* ~/.config/rofi/scripts/
+
+cd ~/.config/rofi/scripts
+
+chmod +x bin/powermenu scripts/powermenu.sh
+
+sudo cp bin/powermenu /usr/local/bin
+
+sudo chown deh /usr/local/bin/powermenu
