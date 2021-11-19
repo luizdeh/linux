@@ -148,14 +148,14 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
-set $ws1 
-set $ws2 
-set $ws3 
-set $ws4 
-set $ws5 
-set $ws6 ⚡
-set $ws7 
-set $ws8 
+set $ws1 1:
+set $ws2 2:
+set $ws3 3:
+set $ws4 4:
+set $ws5 5:
+set $ws6 6:⚡
+set $ws7 7:
+set $ws8 8:
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
