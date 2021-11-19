@@ -4,20 +4,18 @@ set $mod1 Mod1
 font pango:Source Code Pro 9
 workspace_layout default
 gaps inner 6
-gaps outer 2
+gaps outer 1
 default_border pixel 0
 hide_edge_borders both
 default_floating_border pixel 0
 
 focus_follows_mouse no
 floating_modifier $mod
-#bindsym $mod+h split h;exec dunstify 'tile horizontally'
-#bindsym $mod+v split v;exec dunstify 'tile vertically'
 bindsym $mod+f fullscreen toggle
 bindsym $mod1+f floating toggle
 bindsym $mod+$mod1+u focus mode_toggle
 bindsym $mod+a focus parent
-bindsym $mod+v split toggle
+bindsym $mod+v split toggle;exec notify-send 'toggled tiling'
 
 exec --no-startup-id nm-applet
 exec --no-startup-id redshift-gtk
@@ -27,7 +25,7 @@ exec --no-startup-id clipit
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id setxkbmap br
 exec --no-startup-id exec g810-led -p /etc/g810-led/profile
-exec --no-startup-id exec dropbox
+#exec --no-startup-id exec dropbox
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 
 bindsym $mod+Shift+c reload
@@ -37,6 +35,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod1+space exec --no-startup-id rofi -no-lazy-grab -show drun
 bindsym $mod+space exec --no-startup-id rofi -no-lazy-grab -show window
 bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+F12 exec --no-startup-id powermenu
 
 bindsym $mod+Insert exec i3lock -i ~/Images/Wallpapers/dlanham-NightOwl.png
 
@@ -46,7 +45,7 @@ bindsym $mod+Ctrl+m exec spotify
 bindsym $mod+Ctrl+f exec thunar
 bindsym $mod+Ctrl+n exec leafpad
 bindsym $mod+Ctrl+p exec mousepad
-bindsym $mod+i exec mousepad ~/.config/i3/config
+bindsym $mod+i exec terminator -e 'bash -c "nvim ~/.config/i3/config"'
 bindsym $mod+c exec qalculate-gtk
 bindsym $mod+$mod1+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 
@@ -81,6 +80,7 @@ for_window [class="SimpleScreenRecorder"] floating enable, move position center
 for_window [class="Gnome-disks"] floating enable, resize set 1200 800, move position center
 for_window [class="GParted"] floating enable, resize set 1200 800, move position center
 for_window [class="Qalculate-gtk"] floating enable, resize set 800 600, move position center
+for_window [class="mpv"] floating enable, resize set 1600 900, move position center
 
 for_window [title="Friends List"] floating enable                       
 for_window [class="^Steam$" title="^Friends$"] floating enable
@@ -148,14 +148,14 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
-set $ws1 1: 1: 
-set $ws2 2: 2: 
-set $ws3 3: 3: 
-set $ws4 4: 4: 
-set $ws5 5: 5: 
-set $ws6 6: 6: ⚡
-set $ws7 7: 7: 
-set $ws8 8: 8: 
+set $ws1 
+set $ws2 
+set $ws3 
+set $ws4 
+set $ws5 
+set $ws6 ⚡
+set $ws7 
+set $ws8 
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -188,27 +188,31 @@ set $grey                #808080
 set $lgrey        	 #e5e5e5
 set $blue      	         #0000ff
 set $cyan                #00ffff
-set $black               #000000
+set $tblack              #00000000
+set $black		 #000000
 set $white               #ffffff
 set $yellow              #ffff00
 set $red                 #ff0000
 set $green               #4bfd4b
+set $dgreen		 #004000
 set $purple		 #a64ca6
 set $sline		 #ffffffff
 
 bar {
-	#i3bar_command i3bar --transparency
+	i3bar_command i3bar --transparency
 	status_command i3status -c ~/.config/i3status/config
 	position top
+	tray_padding 0
+	workspace_min_width 40
 	font pango:hack bold 9
-	strip_workspace_numbers yes
+	strip_workspace_numbers no 
 	colors {
-		background 		$black
-		separator 		$black
-		statusline		$white
-		focused_workspace	$green	$green	$black
-		active_workspace	$black	$black	$lgrey
-		inactive_workspace	$black	$black	$lgrey
-		urgent_workspace	$purple	$purple	$white
+		background 		$tblack
+		separator 		$tblack
+		statusline		$dgreen
+		focused_workspace	$tblack	$green	$black
+		active_workspace	$tblack	$black	$lgrey
+		inactive_workspace	$tblack	$black	$lgrey
+		urgent_workspace	$tblack	$purple	$lgrey
 	}
 }
