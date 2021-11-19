@@ -11,7 +11,7 @@ swapon /dev/sda2
 mkfs.ext4 /dev/sda3
 mount /dev/sda3 /mnt
 
-pacstrap /mnt base linux linux-headers linux-firmware 
+pacstrap /mnt base linux-lts linux-ts-headers linux-firmware 
 pacman -Syu 
 pacman -S sudo vim dialog
 
@@ -21,13 +21,13 @@ arch-chroot /mnt
 
 ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 hwclock --systohc
-nano /etc/locale.gen
+vim /etc/locale.gen
 locale-gen
-nano /etc/locale.conf
+vim /etc/locale.conf
 	LANG=en_US.UTF-8
 
 echo oldpc > /etc/hostname
-nano /etc/hosts
+vim /etc/hosts
 	127.0.0.1      localhost
 	::1            localhost
 	127.0.1.1      oldpc
@@ -36,10 +36,10 @@ passwd
 useradd -m deh
 passwd deh
 usermod -aG wheel,audio,video,optical,storage deh
-EDITOR=nano visudo
+EDITOR=vim visudo
 	%wheel ALL=(ALL) ALL
 
-nano /etc/vconsole.conf
+vim /etc/vconsole.conf
 	KEYMAP=br-abnt2
 
 grub efibootmgr os-prober mtools
