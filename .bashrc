@@ -6,12 +6,17 @@ PS1="\t \[$(tput bold)\]>\[$(tput sgr0)\] \[$(tput sgr0)\]\[$(tput bold)\]\[\033
 
 shopt -s cdspell
 shopt -s histappend
+shopt -s checkwinsize
 HISTCONTROL=ignoreboth
 
-alias ls='ls --color=auto --group-directories-first'
+alias ls='exa -al --color=always --group-directories-first' # my preferred listing
+alias la='exa -a --color=always --group-directories-first'  # all files and dirs
+alias ll='exa -l --color=always --group-directories-first'  # long format
+alias lt='exa -aT --color=always --group-directories-first' # tree listing
+
+#alias ls='ls --color=auto --group-directories-first -l'
+#alias la='ls -A'
 alias grep='grep --color=auto'
-alias l='ls -l'
-alias la='ls -lA'
 alias fdir='find . -type d -name'
 alias ff='find . -type f -name'
 alias lgrep='ls -l | grep'
@@ -44,7 +49,7 @@ alias ursh='cd /usr/share && ls -lA'
 alias jctl="journalctl -p 3 -xb"
 
 #alias fuck='sudo !!'
-alias install='sudo pacman -S'
+alias get='sudo pacman -S'
 alias remove='sudo pacman -Rns'
 alias update='sudo pacman -Suy'
 alias search='sudo pacman -Ss'
@@ -54,17 +59,31 @@ alias showme='sudo pacman -Qi'
 alias findme='sudo pacman -Si'
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
-alias instally='yay -S'
+alias gety='yay -S'
 alias searchy='yay -Ss'
 alias cleany='yay -Yc'
 alias updatey='yay -Syu'
 
 alias reload='source ~/.bashrc'
+
+alias bashrc='nvim .bashrc'
+alias bar='nvim ~/.config/i3status/config'
+alias picomrc='nvim ~/.config/picom/picom.conf'
+alias vimrc='nvim ~/.config/nvim/init.vim'
+alias i3rc='nvim ~/.config/i3/config'
+
 alias fonts='sudo fc-cache -fv'
 alias merge='xrdb -merge .Xresources'
 
 alias kc='g810-led -p /etc/g810-led/profile'
 alias top='bashtop'
+alias clock='tty-clock -sc -C 2'
+alias moc='mocp --theme mostly_green'
+alias vim='nvim'
+
+alias grubup='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+alias mki='sudo mkinitcpio -P'
+alias mk='sudo mkinitcpio -p'
 
 ex ()
 {
