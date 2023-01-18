@@ -1,0 +1,67 @@
+mpd_music_dir = "/mnt/data/Music"
+lyrics_directory  = ~/.ncmpcpp/lyrics
+ncmpcpp_directory  = ~/.ncmpcpp
+mpd_host = "localhost"
+mpd_port = "6600"
+mpd_connection_timeout = "5"
+mpd_crossfade_time = "5"
+
+playlist_disable_highlight_delay = "3"
+/* playlist_display_mode = "columns" */
+playlist_display_mode = "classic"
+playlist_show_remaining_time = "no"
+/* playlist_editor_mode = "classic" */
+ask_before_clearing_playlists = "no"
+
+user_interface = "classic"
+default_place_to_search_in = "database"
+browser_display_mode = "classic"
+browser_sort_format = {%a - }{%t}|{%f} {%l}
+autocenter_mode = "yes"
+ignore_leading_the = "yes"
+header_visibility = "no"
+statusbar_visibility = "yes"
+titles_visibility = "no"
+
+song_columns_list_format = " $L(30)[green]{a}  (40)[blue]{t}  $R(30)[magenta]{b} "
+song_list_format = "{$8%l$9}   {$3%a$9}   {$5%t$9}{$R$6%b$9}"
+song_library_format = "{%n }{%t}|{%f}"
+now_playing_prefix = ""
+now_playing_suffix = "$9$/b"
+song_status_format = "{$3%a :$9} {$b$5%t$/b} {$0[$6 %b $0]$9}"
+
+progressbar_look =  "━━━"
+progressbar_color = "black"
+progressbar_elapsed_color = "green"
+
+colors_enabled = "yes"
+main_window_color = "yellow"
+#main_window_highlight_color = "blue"
+header_window_color = "cyan"
+volume_color = "red"
+statusbar_color = "white"
+#active_column_color = "cyan"
+active_window_border = "blue"
+
+#visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_output_name = "my_fifo"
+visualizer_type = "spectrum" (spectrum/wave)
+#visualizer_look = "+|"
+
+cyclic_scrolling = "yes"
+header_text_scrolling = "yes"
+jump_to_now_playing_song_at_start = "yes"
+lines_scrolled = "2"
+
+selected_item_prefix = "+ "
+discard_colors_if_item_is_selected = "yes"
+
+incremental_seeking = "yes"
+seek_time = "15"
+
+display_bitrate = "no"
+follow_now_playing_lyrics = "yes"
+empty_tag_marker = ""
+
+/* execute_on_song_change = dunstify -u low "$(mpc --format '%title% \n%artist% - %album%' current)" */
+
