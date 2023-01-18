@@ -1,0 +1,81 @@
+configuration {
+	modi:               "drun,window,run,combi";
+	show-icons:         false;
+	matching:           "glob";
+	font:               "Noto Sans 9";
+	hide-scrollbar:     true;
+	display-combi:      "rofi";
+    disable-history:    true;
+}
+
+@import "colors.rasi"
+
+window {
+    transparency:                   "real";
+    background-color:               @se;
+    text-color:                     @ac;
+	border:							0px;
+	border-color:					@se;
+    border-radius:                  0px;
+	width:							10%;
+    location:                       center;
+    x-offset:                       0;
+    y-offset:                       0;
+}
+
+inputbar {
+    background-color:               @bg;
+    text-color:                     @ac;
+    expand:                         false;
+	border:							0% 0% 0% 0%;
+    border-radius:                  0px;
+	border-color:					@ac;
+    margin:                         0% 0% 0% 0%;
+    padding:                        0%;
+}
+
+listview {
+    background-color:               @al;
+    padding:                        10px;
+    columns:                        1;
+    lines:                          3;
+    spacing:                        10px;
+    cycle:                          true;
+    dynamic:                        true;
+    layout:                         vertical;
+}
+
+mainbox {
+    background-color:               @al;
+	border:							0% 0% 0% 0%;
+    border-radius:                  0% 0% 0% 0%;
+	border-color:					@se;
+    children:                       [ listview ];
+    spacing:                       	0%;
+    padding:                        0%;
+}
+
+element {
+    background-color:               @al;
+    text-color:                     @fg;
+    orientation:                    horizontal;
+    border-radius:                  0%;
+    padding:                        1% 1% 1% 1%;
+    }
+
+element-text {
+    background-color: 				@al;
+    text-color:       				inherit;
+    expand:                         true;
+    horizontal-align:               0;
+    vertical-align:                 0;
+    margin:                         0% 0% 0% 0%;
+}
+
+element selected {
+    background-color:               @se;
+    text-color:                     @ac;
+	border:							0.1% 0.1% 0.1% 0.1%;
+    border-radius:                  0px;
+    border-color:                  	@ac;
+}
