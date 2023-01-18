@@ -1,0 +1,152 @@
+
+#-------------------------------------starship
+
+add_newline = true
+#format = """
+#[╭─](bright-black)$hostname $directory $git_branch $git_status $git_commit
+#[╰─](bright-black)$character"""
+format= """
+[┌─](bold green)$username$hostname $directory $git_branch $git_status $git_commit
+[└](bold green)$character"""
+
+[line_break]
+disabled = false
+
+[time]
+disabled = false
+
+[username]
+disabled = false
+show_always = false
+style_root = "bold red"
+style_user = "bold green"
+format = "[$user]($style)"
+
+[battery]
+disabled = true
+
+[character]
+# success_symbol = "[➜](bold green) "
+success_symbol = "[─](bold green)"
+error_symbol = "[✗](bold red) "
+vicmd_symbol= "[<](bold green) "
+disabled = false
+
+# > =!= &= >-|||-  -| |=> ::v ^=^ |>|
+# >= >-|> |> <| ||> |||> -_|_//===/==/=/=/=//=//=/=/=/=/=/ /==|> |>
+# ==> ->> -> ┌─ └─ ┅ ┅ ┅ ┅
+
+[cmd_duration]
+
+[directory]
+read_only = "  "
+# truncation_length = 2
+# truncation_symbol = ".../"
+truncate_to_repo = false
+disabled = false
+format = "[$path](bold blue)[$read_only](bold red)"
+
+[git_branch]
+symbol = ""
+format = "[[|](bright-black) $symbol $branch](bold fg:#ffa500)"
+
+[git_commit]
+format = "[[|](bright-black) \\($hash$tag\\)](white)"
+disabled = false
+commit_hash_length = 7
+tag_disabled = false
+tag_symbol = "🏷"
+
+[git_state]
+disabled = true
+
+[git_status]
+format = "[[|](bright-black) $all_status $ahead_behind]($style)"
+staged = "[ ${count}](green) "
+modified = "[ ${count}](yellow) "
+untracked = "[? ${count}](blue) "
+deleted = "[ ${count}](red) "
+ahead = "[ ${count}](bold yellow) "
+behind = "[ ${count}](bold fg:#ffa50) "
+stashed = "[ ${count}](cyan) "
+renamed = "[ ${count}]() "
+conflicted = "[][ ${count}] "
+diverged = "[] [|](bright-black) [ ${ahead_count}(bold yellow) ][ ${behind_count}(bold fg:#ffa500) ] "
+
+[hostname]
+ssh_only = true
+format = " @ [$hostname](bold green) [|](bright-black)"
+disabled = false
+
+[jobs]
+
+[memory_usage]
+symbol = " "
+disabled = true
+
+[kubernetes]
+symbol = "⎈ "
+disabled = true
+
+[aws]
+symbol = "  "
+disabled = true
+
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+disabled = true
+
+[nodejs]
+symbol = " "
+
+[package]
+symbol = " "
+format = "[$version]"
+
+[python]
+symbol = " "
+
+[spack]
+symbol = "🅢 "
+
+[rust]
+symbol = " "
