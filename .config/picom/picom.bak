@@ -1,0 +1,20 @@
+backend = "glx";
+shadow = false;
+fading = false;
+active-opacity = 0.95;
+inactive-opacity = 0.90;
+opacity-rule = [
+  "100:class_g= 'mpv'",
+  "100:class_g= 'firefox'",
+  "100:class_g= 'Chromium'",
+  "100:class_g= 'Dunst'",
+  "95:class_g= 'Code'",
+  "75:class_g= 'Polybar'"
+]
+vsync = false;
+wintypes:
+{
+  tooltip = { opacity = 1; focus = true; }
+  popup_menu = { opacity = 1; }
+  dropdwon_menu = { opacity = 1; }
+}
