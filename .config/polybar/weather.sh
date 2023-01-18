@@ -55,7 +55,7 @@ get_duration() {
 
 }
 
-KEY="e5621301af6cf7d6f3960cfcf7bd9e72"
+KEY="not here"
 CITY="Florianópolis,BR"
 UNITS="metric"
 SYMBOL="°C"
