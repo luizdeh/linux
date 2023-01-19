@@ -23,6 +23,15 @@ key("n", "<C-u>", "<C-u>zz")
 key("n", "n", "nzzzv")
 key("n", "N", "Nzzzv")
 
+-- close view
+key('n', '<leader>x', ':hid<CR>')
+
+-- nvim tree
+key('n', '<leader>t', ':NvimTreeToggle<CR>', silent)
+
+-- undotree
+key("n", "<leader>u", ":UndotreeToggle<CR>", silent)
+
 -- greatest remap ever
 key("x", "<leader>p", [["_dP]])
 
@@ -39,22 +48,13 @@ key("i", "<C-c>", "<Esc>")
 key("n", "Q", "<nop>")
 -- key("n", "<leader>f", vim.lsp.buf.format)
 
+-- quickfix list
 -- key("n", "<C-k>", ":cnext<CR>zz")
 -- key("n", "<C-j>", ":cprev<CR>zz")
-key("n", "<leader>k", ":lnext<CR>zz")
-key("n", "<leader>j", ":lprev<CR>zz")
+
+-- location list
+-- key("n", "<leader>k", ":lnext<CR>zz")
+-- key("n", "<leader>j", ":lprev<CR>zz")
 
 --key("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 --key("n", "<leader>x", ":!chmod +x %<CR>", { silent = true })
-
-key('n', '<leader>x', ':hid<CR>')
--- key("n", "<leader>s", ":source ~/.config/nvim/init.lua<CR>")
-
--- nvim tree
-key('n', '<leader>t', ':NvimTreeToggle<CR>', silent)
-
--- undotree
-key("n", "<leader>u", ":UndotreeToggle<CR>", silent)
-
--- prettier
-key('n', "<leader>p", ":Prettier<CR>", silent)
