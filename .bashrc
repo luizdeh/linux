@@ -13,17 +13,13 @@ HISTFILESIZE=10000
 #    do source $i
 # done
 
-# function work() {
-#     export PROJECT_DIR=$1
-#     exec kitty --session ~/.config/kitty/work.conf
-# }
-
 # shared folder
 alias s='cd /mnt/data/share/Base'
 
 # fzf
 alias f='fzf --preview "bat --color=always --style=plain --line-range :500 {}"'
 
+# combo
 alias sf='s && f'
 
 # navigation and terminal commands
@@ -100,9 +96,14 @@ alias gl='git log'
 alias gt='git stash'
 alias push='git push'
 alias pull='git pull'
+
+# dotfiles git
 alias cfg='/usr/bin/git --git-dir=/home/deh/.cfg/ --work-tree=/home/deh'
+alias cfgc='cfg commit -m'
+alias cfgs='cfg status'
 
 # startship
 eval "$(starship init bash)"
 
+# fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
