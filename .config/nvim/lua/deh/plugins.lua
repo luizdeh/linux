@@ -45,9 +45,9 @@ return require('packer').startup(function(use)
             {'nvim-lua/popup.nvim'}
         },
   }
+  use('nvim-tree/nvim-tree.lua')
   use('theprimeagen/harpoon')
   use('mbbill/undotree')
-  use('nvim-tree/nvim-tree.lua')
 
   -- colorscheme
   use({
@@ -61,11 +61,8 @@ return require('packer').startup(function(use)
 
   -- syntax
   use({'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'})
-  use('nvim-treesitter/playground')
-  use('MunifTanjim/prettier.nvim')
 
   -- git
-  use('tpope/vim-fugitive')
   use('lewis6991/gitsigns.nvim')
 
   -- looks
@@ -82,7 +79,6 @@ return require('packer').startup(function(use)
     end
 }
   use('famiu/bufdelete.nvim')
-  -- use('tpope/vim-commentary')
   use('tpope/vim-repeat')
 
   -- UI
