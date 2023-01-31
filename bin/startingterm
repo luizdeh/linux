@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# top id = 2
+# knowledge id = 3
+# ncm id = 4
+# terminal id =  5
+
+kitty @ launch \
+  --type=window \
+  --location=first \
+  --hold sh -c 'btop' \
+
+kitty @ launch \
+  --type=window \
+  --location=vsplit \
+
+kitty @ focus-window -m id:2
+
+kitty @ launch \
+  --type=window \
+  --location=hsplit \
+  --hold sh -c 'ncmpcpp' \
+
+kitty @ focus-window -m id:3

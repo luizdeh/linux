@@ -1,0 +1,10 @@
+#!/bin/bash
+
+PRIMARY="eDP1"
+SECONDARY="HDMI1"
+
+if [ -z "$(xrandr --listactivemonitors | grep 'Monitors: 1')" ]; then
+    xrandr --output $PRIMARY --primary
+    xrandr --output $PRIMARY --primary --mode 1920x1080 --pos 0x0 --rotate normal --output $SECONDARY --mode 1920x1080 --pos 1920x0 --rotate normal 
+    i3-msg "workspace 1, move workspace to output $PRIMARY"
+fi
