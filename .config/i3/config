@@ -1,6 +1,8 @@
-# system settings
+# i3 config
+
+# system
 workspace_layout default
-workspace_layout default
+workspace_auto_back_and_forth yes
 popup_during_fullscreen smart
 focus_follows_mouse no
 hide_edge_borders both
@@ -8,6 +10,7 @@ default_border pixel 1
 default_floating_border none
 floating_maximum_size 1860 x 980
 floating_minimum_size 100 x 100
+font pango: JetBrains Mono 0
 
 # gaps
 gaps inner 6
@@ -31,13 +34,16 @@ $exec dex --autostart --environment i3
 $exec xss-lock --transfer-sleep-lock -- i3lock --nofork
 $exec setxkbmap br
 $exec numlockx on
-$exec picom -CGb
+$exec picom --experimental-backends -CGb
 $exec mpd
 $exec thunar --daemon
 $exec dunst -config ~/.config/dunst/dunstrc
-$exec feh --bg-fill ~/Images/Wallpapers/wp31
 $exec xsct 0
 $exec nm-applet
+$execa sh ~/bin/screens
+# $exec feh --bg-fill ~/Images/Wallpapers/wp31
+$exec ~/.fehbg
+$exec kitty --name=info -e sh $HOME/.config/kitty/working.sh
 
 # modifiers
 set $mod Mod4
@@ -58,6 +64,7 @@ bindsym $mod1+space $exec ~/.config/rofi/launcher.sh
 bindsym $mod+space $exec ~/.config/rofi/windowlauncher.sh
 bindsym Print $exec sh ~/.config/rofi/screenshot.sh
 bindsym F12 $exec sh ~/.config/rofi/powermenu.sh
+bindsym $mod+$mod1+x $exec kitty --name=info -e sh $HOME/.config/kitty/working.sh
 
 # lock
 bindsym $mod+Insert $exec sh ~/bin/lock
@@ -66,6 +73,8 @@ bindsym $mod+Insert $exec sh ~/bin/lock
 bindsym $mod+b $exec firefox
 bindsym $mod+t $exec thunar
 bindsym $mod+m $exec kitty --name=ncm -e ncmpcpp
+
+# screen temperature
 bindsym $mod+Shift+n $exec xsct 3000
 bindsym $mod1+Shift+n $exec xsct 0
 
@@ -121,64 +130,77 @@ bindsym $mod+$mod1+Down resize grow height 50 px
 bindsym $mod+$mod1+Up resize shrink height 50 px
 bindsym $mod+$mod1+Right resize grow width 50 px
 
+# workspace output
+set $left eDP1
+set $right HDMI1
+workspace 1 output $left
+workspace 2 output $right
+workspace 3 output $left
+workspace 4 output $right
+workspace 5 output $left
+workspace 6 output $right
+workspace 7 output $left
+workspace 8 output $right
+workspace 9 output $left
+workspace 10 output $right
+
 # workspaces
-workspace_auto_back_and_forth yes
 bindsym $mod1+Tab workspace back_and_forth
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
-
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+bindsym $mod+x move workspace to output next
 
 # switch to workspace
-bindsym $mod+1 workspace number $ws1
-bindsym $mod+2 workspace number $ws2
-bindsym $mod+3 workspace number $ws3
-bindsym $mod+4 workspace number $ws4
-bindsym $mod+5 workspace number $ws5
-bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8
-bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number $ws1; workspace 1
-bindsym $mod+Shift+2 move container to workspace number $ws2; workspace 2
-bindsym $mod+Shift+3 move container to workspace number $ws3; workspace 3
-bindsym $mod+Shift+4 move container to workspace number $ws4; workspace 4
-bindsym $mod+Shift+5 move container to workspace number $ws5; workspace 5
-bindsym $mod+Shift+6 move container to workspace number $ws6; workspace 6
-bindsym $mod+Shift+7 move container to workspace number $ws7; workspace 7
-bindsym $mod+Shift+8 move container to workspace number $ws8; workspace 8
-bindsym $mod+Shift+9 move container to workspace number $ws9; workspace 9
-bindsym $mod+Shift+0 move container to workspace number $ws10; workspace 10
-
+bindsym $mod+Shift+1 move container to workspace 1; workspace 1
+bindsym $mod+Shift+2 move container to workspace 2; workspace 2
+bindsym $mod+Shift+3 move container to workspace 3; workspace 3
+bindsym $mod+Shift+4 move container to workspace 4; workspace 4
+bindsym $mod+Shift+5 move container to workspace 5; workspace 5
+bindsym $mod+Shift+6 move container to workspace 6; workspace 6
+bindsym $mod+Shift+7 move container to workspace 7; workspace 7
+bindsym $mod+Shift+8 move container to workspace 8; workspace 8
+bindsym $mod+Shift+9 move container to workspace 9; workspace 9
+bindsym $mod+Shift+0 move container to workspace 10; workspace 10
 
 # system windows
+for_window [all] border pixel
 for_window [urgent=latest] focus
-for_window [window_role="."] floating enable
+for_window [class="[.]*"] floating enable
+for_window [window_role="[.]*"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="splash"] floating enable
+for_window [window_type="tooltip"] floating enable
+for_window [window_type="notification"] floating enable
 
-# firefox
-assign [class="firefox"] $ws1
-for_window [class="firefox" window_type="normal"] floating disable
+# workspace assignments
+for_window [instance="info"] move container to workspace 1
+assign [class="firefox"] 3
+assign [class="Code"] 4
+assign [class="Chromium"] 5
+assign [class="Thunar"] 7
 
-# chromium
-assign [class="Chromium"] $ws2
-for_window [class="Chromium" window_type="normal"] floating disable
+# misc
+for_window [class="Lxappearance"] sticky enable
+# for_window [class="Nm-connection-editor"] floating enable
 
-# thunar
-assign [class="Thunar"] $ws7
-for_window [class="Thunar" window_type="normal"] floating disable
-
-# code
-assign [class="Code"] $ws4
-for_window [class="Code" window_type="normal"] floating disable
+# disable floating
+for_window [class="firefox$" window_type="normal"] floating disable
+for_window [class="Chromium$" window_type="normal"] floating disable
+for_window [class="Thunar$" window_type="normal"] floating disable
+for_window [class="Code$" window_type="normal"] floating disable
+for_window [class="mtga.exe" window_type="normal"] floating disable
+for_window [class="Zathura$" window_type="normal"] floating disable
+for_window [class="kitty$" window_type="normal"] floating disable
+for_window [class="libreoffice" window_type="normal"] floating disable

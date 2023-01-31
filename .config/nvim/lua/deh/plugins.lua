@@ -45,6 +45,8 @@ return require('packer').startup(function(use)
             {'nvim-lua/popup.nvim'}
         },
   }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use('BurntSushi/ripgrep')
   use('nvim-tree/nvim-tree.lua')
   use('theprimeagen/harpoon')
   use('mbbill/undotree')
@@ -63,6 +65,7 @@ return require('packer').startup(function(use)
   use({'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'})
 
   -- git
+  use('tpope/vim-fugitive')
   use('lewis6991/gitsigns.nvim')
 
   -- looks
@@ -110,6 +113,9 @@ return require('packer').startup(function(use)
 		  {'rafamadriz/friendly-snippets'},
 	  }
   }
+
+  -- testing
+  use('RRethy/vim-illuminate')
 
   -- finish
   if PACKER_BOOTSTRAP then
