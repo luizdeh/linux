@@ -42,5 +42,6 @@ require('nvim-treesitter.configs').setup({
         'html',
         'bash',
     },
+    additional_vim_regex_highlighting = true,
 })
 
