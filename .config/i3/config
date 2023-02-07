@@ -29,21 +29,22 @@ set $exec exec --no-startup-id
 set $execa exec_always --no-startup-id
 
 # autostart
-$execa $HOME/.config/polybar/launch.sh
 $exec dex --autostart --environment i3
 $exec xss-lock --transfer-sleep-lock -- i3lock --nofork
 $exec setxkbmap br
 $exec numlockx on
-$exec picom --experimental-backends -CGb
+$exec picom -CGb
 $exec mpd
 $exec thunar --daemon
 $exec dunst -config ~/.config/dunst/dunstrc
 $exec xsct 0
-$exec nm-applet
 $execa sh ~/bin/screens
+$execa $HOME/.config/polybar/launch.sh
+$exec nm-applet
 # $exec feh --bg-fill ~/Images/Wallpapers/wp31
 $exec ~/.fehbg
-$exec kitty --name=info -e sh $HOME/.config/kitty/working.sh
+$exec kitty --name="info" -e sh $HOME/bin/term
+$exec "sh -c 'sleep 2; sh $HOME/bin/startup'"
 
 # modifiers
 set $mod Mod4
@@ -64,7 +65,7 @@ bindsym $mod1+space $exec ~/.config/rofi/launcher.sh
 bindsym $mod+space $exec ~/.config/rofi/windowlauncher.sh
 bindsym Print $exec sh ~/.config/rofi/screenshot.sh
 bindsym F12 $exec sh ~/.config/rofi/powermenu.sh
-bindsym $mod+$mod1+x $exec kitty --name=info -e sh $HOME/.config/kitty/working.sh
+bindsym $mod+$mod1+x $exec kitty --name="info" -e sh $HOME/bin/startingterm
 
 # lock
 bindsym $mod+Insert $exec sh ~/bin/lock
@@ -72,7 +73,7 @@ bindsym $mod+Insert $exec sh ~/bin/lock
 # applications
 bindsym $mod+b $exec firefox
 bindsym $mod+t $exec thunar
-bindsym $mod+m $exec kitty --name=ncm -e ncmpcpp
+bindsym $mod+m $exec kitty --name="ncm" -e ncmpcpp
 
 # screen temperature
 bindsym $mod+Shift+n $exec xsct 3000
@@ -190,17 +191,17 @@ assign [class="firefox"] 3
 assign [class="Code"] 4
 assign [class="Chromium"] 5
 assign [class="Thunar"] 7
+assign [class="mtga"] 6
 
 # misc
 for_window [class="Lxappearance"] sticky enable
-# for_window [class="Nm-connection-editor"] floating enable
 
 # disable floating
-for_window [class="firefox$" window_type="normal"] floating disable
-for_window [class="Chromium$" window_type="normal"] floating disable
+for_window [class="firefox" window_role="browser"] floating disable
+for_window [class="Chromium$" window_role="browser"] floating disable
 for_window [class="Thunar$" window_type="normal"] floating disable
-for_window [class="Code$" window_type="normal"] floating disable
-for_window [class="mtga.exe" window_type="normal"] floating disable
-for_window [class="Zathura$" window_type="normal"] floating disable
-for_window [class="kitty$" window_type="normal"] floating disable
-for_window [class="libreoffice" window_type="normal"] floating disable
+for_window [class="Code$"] floating disable
+for_window [class="mtga.exe"] floating disable
+for_window [class="^Zathura$"] floating disable
+for_window [class="kitty$"] floating disable
+for_window [class="libreoffice"] floating disable

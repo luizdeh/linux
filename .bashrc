@@ -55,17 +55,13 @@ alias vim='nvim'
 alias vi='nvim'
 alias ncm='ncmpcpp'
 alias dmesg='dmesg -T'
+alias kb='setxkbmap br'
+alias kbc='g213-led -p ~/.config/g810_profile'
 
 # grub & mkinitcpio
 alias grubup='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias mki='sudo mkinitcpio -P'
 alias mk='sudo mkinitcpio -p'
-
-# pomodoro
-alias pomo_one='remind START now && remind STOP in 25 minutes'
-alias pomo_two='remind START in 30 minutes && remind STOP in 55 minutes'
-alias pomo='pomo_one && pomo_two'
-alias pstop='remind clear'
 
 # pacman
 alias get='sudo pacman -S'

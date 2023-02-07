@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if [ -z "$(xrandr --listactivemonitors | grep 'Monitors: 1')" ]; then
+  sh $HOME/.fehbg
+  g213-led -p ~/.config/g810_profile
+fi

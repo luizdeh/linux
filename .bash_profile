@@ -7,6 +7,7 @@ export BROWSER=chromium
 # path
 export PATH="${PATH}:/home/deh/bin"
 export PATH="${PATH}:/home/deh/.config/rofi/bin"
+export PATH="${PATH}:/home/deh/.local/bin"
 
 # fzf
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --follow --exclude={node_modules,dist}'
@@ -16,8 +17,10 @@ export FZF_ALT_C_COMMAND='fd --type d . $HOME'
 # bat
 export BAT_THEME='Nord'
 
+# source
 if [[ -f ~/.bashrc ]]; then . ~/.bashrc; fi
 
+# auto start x
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
   exec startx
 fi
