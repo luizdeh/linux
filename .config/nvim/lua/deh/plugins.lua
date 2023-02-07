@@ -86,7 +86,7 @@ return require('packer').startup(function(use)
 
   -- UI
   use({
-        'glepnir/lspsaga.nvim', 
+        'glepnir/lspsaga.nvim',
         branch = 'main',
         config = function()
             require('lspsaga').setup({})

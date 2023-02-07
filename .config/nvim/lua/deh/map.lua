@@ -72,3 +72,6 @@ key('n', '<leader>t', ':NvimTreeToggle<CR>', opts)
 
 -- undotree
 key("n", "<leader>u", ":UndotreeToggle<CR>", opts)
+
+-- json
+key("n", "<leader>js", ":%!jq .<CR>", opts)
