@@ -97,6 +97,7 @@ alias pull='git pull'
 alias cfg='/usr/bin/git --git-dir=/home/deh/.cfg/ --work-tree=/home/deh'
 alias cfgc='cfg commit -m'
 alias cfgs='cfg status'
+alias cfgp='cfg push'
 
 # startship
 eval "$(starship init bash)"
