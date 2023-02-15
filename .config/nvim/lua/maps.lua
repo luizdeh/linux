@@ -75,3 +75,21 @@ key("n", "<leader>u", ":UndotreeToggle<CR>", opts)
 
 -- json
 key("n", "<leader>js", ":%!jq .<CR>", opts)
+
+-- lazy
+  key('n', '<leader>l', ':Lazy<CR>', opts)
+
+----------------------------------------telescope
+-- fuzzy search
+key('n', '<leader>/', ':Telescope current_buffer_fuzzy_find<CR>', { desc = 'search current buffer' })
+key('n', '<leader>fs', ":lua require('telescope.builtin').grep_string({search = vim.fn.input('grep > ')}", { desc = 'grep string in current buffer' })
+key('n', '<leader>fl', ':Telescope live_grep<CR>', { desc = 'live grep files in the cwd' })
+
+-- file explorer
+key('n', '<leader>ff', ':Telescope find_files<CR>', { desc = 'find files' })
+
+-- history
+key('n', '<leader>fh', ':Telescope oldfiles<CR>', { desc = 'recently opened files' })
+
+-- buffers
+key('n', '<leader>fb', ':Telescope buffers<CR>', { desc = 'buffers' })

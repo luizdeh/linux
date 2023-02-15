@@ -187,7 +187,7 @@ for_window [window_type="notification"] floating enable
 
 # workspace assignments
 for_window [instance="info"] move container to workspace 1
-assign [class="firefox"] 3
+assign [class="firefox"] 2
 assign [class="Code"] 4
 assign [class="Chromium"] 5
 assign [class="Thunar"] 7
