@@ -1,8 +1,6 @@
 local key = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
-key('n', '<leader>1', ':testing', opts)
-
 -- remap Q to nothing
 key('n', 'Q', '<nop>', opts)
 
