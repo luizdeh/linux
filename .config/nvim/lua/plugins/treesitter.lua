@@ -15,8 +15,12 @@ return {
         enable = true,
         extended_mode = true,
       },
-      indent = { enable = true },
-      autopairs = { enable = true },
+      indent = {
+        enable = true
+      },
+      autopairs = {
+        enable = true
+      },
       textobjects = {
         select = {
           enable = true,
@@ -43,17 +47,20 @@ return {
       sync_install = true,
       auto_install = true,
       ensure_installed = {
+        'bash',
+        'css',
+        'html',
         'javascript',
-        'typescript',
-        'tsx',
+        'json',
         'lua',
         'markdown',
-        'css',
-        'json',
-        'html',
-        'bash',
+        'markdown_inline',
+        'tsx',
+        'typescript',
+        'vim',
+        'regex',
+        'python',
       },
     })
   end
 }
-

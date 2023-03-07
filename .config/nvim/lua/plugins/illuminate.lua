@@ -1,6 +1,6 @@
 local M = {
   'RRethy/vim-illuminate',
-  event = 'VeryLazy',
+  event = 'BufReadPost',
 }
 
 M.opts = {
@@ -19,9 +19,9 @@ M.opts = {
 
 M.config = function(_, opts)
   require('illuminate').configure(opts)
-  vim.cmd[[hi IlluminatedWordText guibg=#48584d guifg=#ffffff gui=nocombine]]
-  vim.cmd[[hi IlluminatedWordRead guibg=#48584d guifg=#ffffff gui=nocombine]]
-  vim.cmd[[hi IlluminatedWordWrite guibg=#48584d guifg=#ffffff gui=nocombine]]
+  vim.cmd [[hi IlluminatedWordText guibg=#48584d guifg=#ffffff gui=nocombine]]
+  vim.cmd [[hi IlluminatedWordRead guibg=#48584d guifg=#ffffff gui=nocombine]]
+  vim.cmd [[hi IlluminatedWordWrite guibg=#48584d guifg=#ffffff gui=nocombine]]
 end
 
 return M

@@ -10,7 +10,14 @@ return {
       },
       filters = {
         custom = { "^.git$", "node_modules" }
-      }
+      },
+      git = {
+        enable = false,
+        ignore = true,
+      },
+      hijack_unnamed_buffer_when_opening = false,
+      hijack_cursor = true,
+      update_cwd = true,
     })
   end,
 }

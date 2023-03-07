@@ -1,6 +1,5 @@
 local M = {
   'theprimeagen/harpoon',
-  lazy = false,
   keys = {
     { "<leader>a",
       function()
@@ -8,17 +7,10 @@ local M = {
       end,
     },
     { "<C-e>",
-    function()
-      require('harpoon.ui').toggle_quick_menu()
-    end,
-  },
-    { "<leader>z", ":Telescope harpoon marks<CR>" },
-    { "<C-h>", function() ui.nav_file(1) end },
-    { "<C-t>", function() ui.nav_file(2) end },
-    { "<C-n>", function() ui.nav_file(3) end },
-    { "<C-s>", function() ui.nav_file(4) end },
-    { "<A-p>", function() ui.nav_prev() end },
-    { "<A-n>", function() ui.nav_next() end },
+      function()
+        require('harpoon.ui').toggle_quick_menu()
+      end,
+    },
   },
 }
 
@@ -44,6 +36,15 @@ M.config = function()
 
   harpoon.setup(opts)
   require('telescope').load_extension('harpoon')
+
+  local ui = require('harpoon.ui')
+
+  vim.keymap.set('n', '<leader>1', function() ui.nav_file(1) end)
+  vim.keymap.set('n', '<leader>2', function() ui.nav_file(2) end)
+  vim.keymap.set('n', '<leader>3', function() ui.nav_file(3) end)
+  vim.keymap.set('n', '<leader>4', function() ui.nav_file(4) end)
+  vim.keymap.set('n', '<A-p>', function() ui.nav_prev() end)
+  vim.keymap.set('n', '<A-n>', function() ui.nav_next() end)
 end
 
 return M
