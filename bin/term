@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+kitty @ launch \
+  --type=window \
+  --location=first \
+  --hold sh -c 'btop' \
+
+kitty @ launch \
+  --type=window \
+  --location=vsplit \
+
+kitty @ focus-window -m id:2
+
+kitty @ launch \
+  --type=window \
+  --location=hsplit \
+  --hold sh -c 'ncmpcpp' \
+
+kitty @ focus-window -m id:3
+
+kitty @ resize-window \
+  --match id:1 \
+  --increment 2 \
+  --axis vertical \
