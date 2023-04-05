@@ -1,27 +1,22 @@
-local M = {
+return {
   'RRethy/vim-illuminate',
   event = 'BufReadPost',
+  config = function()
+    require('illuminate').configure({
+      delay = 200,
+      filetypes_denylist = {
+        'NvimTree'
+      },
+      providers = {
+        'treesitter',
+        'lsp',
+        'regex',
+      },
+      modes_allowlist = { 'n' },
+      min_count_to_highlight = 2,
+    })
+    vim.cmd [[hi IlluminatedWordText guibg=#a7c080 guifg=#424c33 gui=nocombine]]
+    vim.cmd [[hi IlluminatedWordRead guibg=#a7c080 guifg=#424c33 gui=nocombine]]
+    vim.cmd [[hi IlluminatedWordWrite guibg=#a7c080 guifg=#424c33 gui=nocombine]]
+  end,
 }
-
-M.opts = {
-  delay = 200,
-  filetypes_denylist = {
-    'NvimTree'
-  },
-  providers = {
-    'treesitter',
-    'lsp',
-    'regex',
-  },
-  modes_allowlist = { 'n' },
-  min_count_to_highlight = 2,
-}
-
-M.config = function(_, opts)
-  require('illuminate').configure(opts)
-  vim.cmd [[hi IlluminatedWordText guibg=#48584d guifg=#ffffff gui=nocombine]]
-  vim.cmd [[hi IlluminatedWordRead guibg=#48584d guifg=#ffffff gui=nocombine]]
-  vim.cmd [[hi IlluminatedWordWrite guibg=#48584d guifg=#ffffff gui=nocombine]]
-end
-
-return M
