@@ -31,20 +31,19 @@ set $execa exec_always --no-startup-id
 # autostart
 $exec dex --autostart --environment i3
 $exec xss-lock --transfer-sleep-lock -- i3lock --nofork
-$exec setxkbmap br
 $exec numlockx on
 $exec picom -CGb
 $exec mpd
-$exec thunar --daemon
 $exec dunst -config ~/.config/dunst/dunstrc
 $exec xsct 0
 $execa sh ~/bin/screens
 $execa $HOME/.config/polybar/launch.sh
 $exec nm-applet
-# $exec feh --bg-fill ~/Images/Wallpapers/wp31
-$exec ~/.fehbg
+# $exec ~/.fehbg
+$exec "sh -c 'sleep 1; sh $HOME/bin/startup'"
+$exec thunar --daemon
 $exec kitty --name="info" -e sh $HOME/bin/term
-$exec "sh -c 'sleep 2; sh $HOME/bin/startup'"
+$exec setxkbmap br
 
 # modifiers
 set $mod Mod4
@@ -205,3 +204,4 @@ for_window [class="mtga.exe"] floating disable
 for_window [class="^Zathura$"] floating disable
 for_window [class="kitty$"] floating disable
 for_window [class="libreoffice"] floating disable
+for_window [class="pokerstars.exe"] floating disable

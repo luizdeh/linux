@@ -56,7 +56,7 @@ alias vi='nvim'
 alias ncm='ncmpcpp'
 alias dmesg='dmesg -T'
 alias kb='setxkbmap br'
-alias kbc='g213-led -p ~/.config/g810_profile'
+alias kbc='sudo g213-led -p ~/.config/g810_profile'
 
 # grub & mkinitcpio
 alias grubup='sudo grub-mkconfig -o /boot/grub/grub.cfg'
