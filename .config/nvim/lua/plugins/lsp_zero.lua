@@ -5,17 +5,12 @@ return {
   dependencies = {
     -- LSP Support
     { 'neovim/nvim-lspconfig',
-      dependencies = {
-        'glepnir/lspsaga.nvim'
-      },
+      -- dependencies = {
+      --   'glepnir/lspsaga.nvim',
+      -- },
     }, -- Required
     { 'williamboman/mason.nvim' }, -- Optional
     { 'williamboman/mason-lspconfig.nvim' }, -- Optional
-    { 'j-hui/fidget.nvim',
-      config = function()
-        require('fidget').setup()
-      end
-    },
     -- Autocompletion
     { 'hrsh7th/nvim-cmp' }, -- Required
     { 'hrsh7th/cmp-nvim-lsp' }, -- Required
@@ -54,27 +49,50 @@ return {
       },
     })
 
+    vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
+    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+    vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+    vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+
     lsp.on_attach(function(_, bufnr)
       local opts = { buffer = bufnr, noremap = true, silent = true }
       local key = vim.keymap.set
-      key("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
-      key("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", opts)
-      key({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts)
-      key("n", "gr", "<cmd>Lspsaga rename<CR>", opts)
-      key("n", "gd", "<cmd>Lspsaga goto_definition<CR>", opts)
-      key("n", "gp", "<cmd>Lspsaga preview_definition<CR>", opts)
-      key("n", "<leader>gl", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
-      key("n", "<leader>gc", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
-      key("n", "<leader>gb", "<cmd>Lspsaga show_buf_diagnostics<CR>", opts)
-      key("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
-      key("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
-      key("n", "[E", function()
-        require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
-      end, opts)
-      key("n", "]E", function()
-        require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
-      end, opts)
-      key("n", "<leader>o", "<cmd>Lspsaga outline<CR>", opts)
+      key('n', 'gD', vim.lsp.buf.declaration, opts)
+      key('n', 'gd', vim.lsp.buf.definition, opts)
+      key('n', 'K', vim.lsp.buf.hover, opts)
+      key('n', 'gi', vim.lsp.buf.implementation, opts)
+      key('n', 'gs', vim.lsp.buf.signature_help, opts)
+      -- key('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, opts)
+      -- key('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
+      -- key('n', '<leader>wl', function()
+      --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+      -- end, opts)
+      key('n', 'gt', vim.lsp.buf.type_definition, opts)
+      key('n', 'gr', vim.lsp.buf.rename, opts)
+      key('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+      key('n', 'gh', vim.lsp.buf.references, opts)
+      -- key('n', '<leader>f', function()
+      --   vim.lsp.buf.format { async = true }
+      -- end, opts)
+
+      --   key("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
+      --   key("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", opts)
+      --   key({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts)
+      --   key("n", "gr", "<cmd>Lspsaga rename<CR>", opts)
+      --   key("n", "gd", "<cmd>Lspsaga goto_definition<CR>", opts)
+      --   key("n", "gp", "<cmd>Lspsaga preview_definition<CR>", opts)
+      --   key("n", "<leader>gl", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
+      --   key("n", "<leader>gc", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
+      --   key("n", "<leader>gb", "<cmd>Lspsaga show_buf_diagnostics<CR>", opts)
+      --   key("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
+      --   key("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
+      --   key("n", "[E", function()
+      --     require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
+      --   end, opts)
+      --   key("n", "]E", function()
+      --     require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
+      --   end, opts)
+      --   key("n", "<leader>o", "<cmd>Lspsaga outline<CR>", opts)
     end)
 
     lsp.setup()
