@@ -4,6 +4,9 @@ local opts = { noremap = true, silent = true }
 -- remap Q to nothing
 key('n', 'Q', '<nop>', opts)
 
+-- remap saving a file
+key({ 'n', 'v', 'x' }, '<leader>w', ':w<CR>', opts)
+
 -- exit insert mode
 key('i', '<C-c>', '<Esc>', opts)
 
@@ -45,7 +48,6 @@ key('n', '<leader><Right>', '<C-w>l', opts)
 
 -- equalise window sizes
 key('n', '<leader>=', '<C-w>=', opts)
-
 
 -- close view
 key('n', '<leader>x', ':hid<CR>', opts)
@@ -100,7 +102,7 @@ key('n', '<leader>l', ':Lazy<CR>', opts)
 key('n', '<leader>t', ':NvimTreeToggle<CR>', opts)
 
 -- undotree
-key("n", "<leader>u", ":UndotreeToggle<CR>", opts)
+key('n', '<leader>u', ':UndotreeToggle<CR>', opts)
 
 -- telescope: file explorer
 key('n', '<leader>ff', ':Telescope find_files<CR>', { desc = 'find files' })

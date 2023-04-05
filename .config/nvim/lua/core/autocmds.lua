@@ -24,3 +24,15 @@ autocmd('BufWritePre', {
     vim.lsp.buf.format()
   end,
 })
+
+-- highlight current buffer in nvim-tree
+local group = vim.api.nvim_create_augroup('HighlightThatShit', { clear = true })
+vim.api.nvim_create_autocmd('BufEnter', {
+  callback = function()
+    local is_tree_open = require('nvim-tree.view').is_visible()
+    if (is_tree_open) then
+      require('nvim-tree.api').tree.find_file()
+    end
+  end,
+  group = group
+})
