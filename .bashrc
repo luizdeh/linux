@@ -21,8 +21,10 @@ alias f='fzf --preview "bat --color=always --style=plain --line-range :500 {}"'
 
 # combo
 alias sf='s && f'
+alias sv='s && nvim'
 
 # navigation and terminal commands
+alias h='cd ~'
 alias ls='exa -ls name --color=always --group-directories-first --git-ignore --icons' # my preferred listing
 alias la='exa -als name --color=always --group-directories-first --git-ignore --icons'  # all files and dirs
 alias lt='exa -aT --color=always --group-directories-first --git-ignore --icons' # tree listing
