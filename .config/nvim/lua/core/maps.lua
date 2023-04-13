@@ -63,8 +63,8 @@ key('n', '<C-Right>', ':vertical resize +2<CR>', opts)
 -- key('n', '<leader>sf', ':%s/', opts)
 -- key('n', '<leader>so', ':bufdo %s/', opts)
 
--- greatest remap ever
-key('x', '<leader>p', '"_dP', opts)
+-- don't yank on visual paste
+key({ 'x', 'v' }, '<leader>p', '"_dP', opts)
 
 -- yank and go to the end of yanked block
 key('v', 'y', 'ygv<Esc>', opts)
@@ -100,40 +100,33 @@ key('n', '<leader>l', ':Lazy<CR>', opts)
 
 -- nvim tree
 key('n', '<leader>t', ':NvimTreeToggle<CR>', opts)
+key('n', 'T', ':NvimTreeFocus<CR>', opts)
 
 -- undotree
 key('n', '<leader>u', ':UndotreeToggle<CR>', opts)
 
--- telescope: file explorer
+-- telescope
 key('n', '<leader>ff', ':Telescope find_files<CR>', { desc = 'find files' })
-
--- telescope: history
 key('n', '<leader>fh', ':Telescope oldfiles<CR>', { desc = 'recently opened files' })
-
--- telescope: buffers
 key('n', '<leader>fb', ':Telescope buffers<CR>', { desc = 'buffers' })
-
--- telescope: fuzzy search current buffer
-key('n', '<leader>/', ':Telescope current_buffer_fuzzy_find<CR>', { desc = 'search current buffer' })
-
--- telescope: fuzzy search (live) current working directory
-key('n', '<leader>fl', ':Telescope live_grep<CR>', { desc = 'live grep files in the cwd' })
-
--- telescope: fuzzy search current working directory
-key('n', '<leader>fs', function() require('telescope.builtin').grep_string({ search = vim.fn.input('grep > ') }) end,
-  { desc = 'grep string in current buffer' })
-
--- telescope: harpoon
 key('n', '<leader>fm', ':Telescope harpoon marks<CR>', { desc = 'harpoon' })
+key('n', '<leader>fgc', ':Telescope git_commits<CR>', { desc = 'git commits' })
+key('n', '<leader>fgs', ':Telescope git_status<CR>', { desc = 'git status' })
+key('n', '<leader>fl', ':Telescope live_grep<CR>', { desc = 'fuzzy search (live) in cwd' })
+key('n', '<leader>/', ':Telescope current_buffer_fuzzy_find<CR>', { desc = 'search current buffer' })
+key('n', '<leader>:', ':Telescope command_history<CR>', { desc = 'command history' })
+key('n', '<leader>fk', ':Telescope keymaps<CR>', { desc = 'keymaps' })
+key('n', '<leader>fa', ':Telescope autocommands<CR>', { desc = 'auto commands' })
+key('n', '<leader>fH', ':Telescope highlights<CR>', { desc = 'highlight groups' })
+--
+-- trouble
+key('n', '<leader>sd', ':TroubleToggle document_diagnostics<CR>', opts)
+key('n', '<leader>sl', ':TroubleToggle loclist<CR>', opts)
+key('n', '<leader>sq', ':TroubleToggle quickfix<CR>', opts)
+key('n', '<leader>sr', ':TroubleToggle lsp_references<CR>', opts)
 
--- trouble: document diagnostics
-key('n', '<leader>zd', ':TroubleToggle document_diagnostics<CR>', opts)
-
--- trouble: location list
-key('n', '<leader>zl', ':TroubleToggle loclist<CR>', opts)
-
--- trouble: quickfix list
-key('n', '<leader>zq', ':TroubleToggle quickfix<CR>', opts)
-
--- trouble: lsp references
-key('n', '<leader>zr', ':TroubleToggle lsp_references<CR>', opts)
+-- todo-comments
+key('n', ']t', function() require('todo-comments').jump_next() end, opts)
+key('n', '[t', function() require('todo-comments').jump_prev() end, opts)
+key('n', '<leader>ft', ':TodoTelescope<CR>')
+key('n', '<leader>ss', ':TodoTrouble<CR>')
