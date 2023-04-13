@@ -4,22 +4,23 @@ return {
   event = "BufRead",
   dependencies = {
     -- LSP Support
-    { 'neovim/nvim-lspconfig',
-      -- dependencies = {
-      --   'glepnir/lspsaga.nvim',
-      -- },
-    }, -- Required
-    { 'williamboman/mason.nvim' }, -- Optional
+    {
+      'neovim/nvim-lspconfig',
+      dependencies = {
+        'glepnir/lspsaga.nvim',
+      },
+    },                                       -- Required
+    { 'williamboman/mason.nvim' },           -- Optional
     { 'williamboman/mason-lspconfig.nvim' }, -- Optional
     -- Autocompletion
-    { 'hrsh7th/nvim-cmp' }, -- Required
-    { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-    { 'hrsh7th/cmp-buffer' }, -- Optional
-    { 'hrsh7th/cmp-path' }, -- Optional
-    { 'saadparwaiz1/cmp_luasnip' }, -- Optional
-    { 'hrsh7th/cmp-nvim-lua' }, -- Optional
+    { 'hrsh7th/nvim-cmp' },                  -- Required
+    { 'hrsh7th/cmp-nvim-lsp' },              -- Required
+    { 'hrsh7th/cmp-buffer' },                -- Optional
+    { 'hrsh7th/cmp-path' },                  -- Optional
+    { 'saadparwaiz1/cmp_luasnip' },          -- Optional
+    { 'hrsh7th/cmp-nvim-lua' },              -- Optional
     -- Snippets
-    { 'L3MON4D3/LuaSnip' }, -- Required
+    { 'L3MON4D3/LuaSnip' },                  -- Required
     -- {'rafamadriz/friendly-snippets'}, -- Optional
   },
   config = function()
@@ -49,10 +50,6 @@ return {
       },
     })
 
-    vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-    vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-    vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
     lsp.on_attach(function(_, bufnr)
       local opts = { buffer = bufnr, noremap = true, silent = true }
@@ -70,13 +67,17 @@ return {
       key('n', 'gt', vim.lsp.buf.type_definition, opts)
       key('n', 'gr', vim.lsp.buf.rename, opts)
       key('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-      key('n', 'gh', vim.lsp.buf.references, opts)
+      -- key('n', 'gh', vim.lsp.buf.references, opts)
       -- key('n', '<leader>f', function()
       --   vim.lsp.buf.format { async = true }
       -- end, opts)
+      key('n', ']o', vim.diagnostic.open_float)
+      key('n', '[d', vim.diagnostic.goto_prev)
+      key('n', ']d', vim.diagnostic.goto_next)
+      key('n', ']s', vim.diagnostic.setloclist)
 
       --   key("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
-      --   key("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", opts)
+      key("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", opts)
       --   key({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts)
       --   key("n", "gr", "<cmd>Lspsaga rename<CR>", opts)
       --   key("n", "gd", "<cmd>Lspsaga goto_definition<CR>", opts)
@@ -92,7 +93,7 @@ return {
       --   key("n", "]E", function()
       --     require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
       --   end, opts)
-      --   key("n", "<leader>o", "<cmd>Lspsaga outline<CR>", opts)
+      key("n", "<leader>o", "<cmd>Lspsaga outline<CR>", opts)
     end)
 
     lsp.setup()

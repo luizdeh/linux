@@ -64,31 +64,31 @@ return {
     priority = 1000,
     config = function()
       require("catppuccin").setup({
-        flavour = "frappe", -- latte, frappe, macchiato, mocha
-        background = { -- :h background
+        flavour = "mocha", -- latte, frappe, macchiato, mocha
+        background = {
           light = "latte",
           dark = "mocha",
         },
         transparent_background = true,
-        show_end_of_buffer = false, -- show the '~' characters after the end of buffers
-        term_colors = false,
+        show_end_of_buffer = true, -- show the '~' characters after the end of buffers
+        term_colors = true,
         dim_inactive = {
           enabled = false,
           shade = "dark",
           percentage = 0.15,
         },
         no_italic = false, -- Force no italic
-        no_bold = false, -- Force no bold
+        no_bold = false,   -- Force no bold
         styles = {
           comments = { "italic" },
-          conditionals = { "italic" },
+          conditionals = {},
           loops = {},
           functions = {},
           keywords = {},
           strings = {},
           variables = {},
           numbers = {},
-          booleans = {},
+          booleans = { "italic" },
           properties = {},
           types = { "italic" },
           operators = {},
@@ -109,7 +109,7 @@ return {
       vim.cmd [[highlight IndentBlankLineContextChar guifg=#909495 gui=nocombine]]
       vim.cmd [[highlight NvimTreeOpenedFile guifg=#8beb60 gui=bold]]
       vim.cmd [[highlight NvimTreeCursorLine guifg=#ffb732 gui=bold]]
-      vim.cmd [[highlight FidgetTask guifg=#5f6f67]]
+      -- vim.cmd [[highlight FidgetTask guifg=#5f6f67]]
     end,
   },
 }

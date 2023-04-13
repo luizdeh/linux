@@ -22,7 +22,7 @@ return {
     use_treesitter_scope = true,
     filetype_exclude = {
       'help',
-      'NvimTree',
+      'mason',
       'mason.nvim',
       'TelescopePromt',
       'TelescopeResults',

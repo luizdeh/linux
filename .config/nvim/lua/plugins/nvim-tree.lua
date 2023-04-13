@@ -6,11 +6,14 @@ return {
   config = function()
     require('nvim-tree').setup({
       view = {
+        adaptive_size = false,
         width = 35,
         signcolumn = "yes",
+        preserve_window_proportions = true,
       },
       filters = {
-        custom = { "^.git$", "node_modules" }
+        custom = { "^.git$", "node_modules" },
+        dotfiles = false,
       },
       git = {
         enable = true,
