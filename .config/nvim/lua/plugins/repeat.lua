@@ -1,6 +1,4 @@
 return {
-  'tpope/vim-repeat',
-  keys = {
-    { '.' }
-  },
+  "tpope/vim-repeat",
+  event = "VeryLazy",
 }

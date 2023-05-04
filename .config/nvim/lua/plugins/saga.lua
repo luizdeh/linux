@@ -1,49 +1,34 @@
 return {
-  'glepnir/lspsaga.nvim',
-  branch = 'main',
-  event = 'BufRead',
+  "glepnir/lspsaga.nvim",
   config = function()
-    require('lspsaga').setup({
-      ui = {
-        -- This option only works in Neovim 0.9
-        title = true,
-        -- Border type can be single, double, rounded, solid, shadow.
-        border = "single",
-        winblend = 0,
-        expand = "",
-        collapse = "",
-        code_action = "💡",
-        incoming = " ",
-        outgoing = " ",
-        hover = ' ',
-        -- colors = {
-        --   normal_bg = 'NONE',
-        --   title_bg = 'NONE',
-        -- },
-      },
+    require("lspsaga").setup({
       lightbulb = {
         enable = false,
-        enable_in_insert = true,
-        sign = true,
-        sign_priority = 40,
-        virtual_text = true,
       },
-      code_action = {
+      code_action_lightbulb = {
+        sign = false,
+        virtual_text = false,
+      },
+      outline = {
+        win_position = "right",
+        win_with = "",
+        win_width = 35,
+        preview_width = 0.4,
+        show_detail = true,
+        auto_preview = true,
+        auto_refresh = true,
+        auto_close = true,
+        custom_sort = nil,
         keys = {
-          quit = { '<Esc', 'q' },
+          expand_or_jump = "o",
+          quit = "q",
         },
-      },
-      rename = {
-        quit = '<Esc>',
-        exec = '<CR>',
-        mark = 'x',
-        confirm = '<CR>',
-        in_select = true,
       },
     })
   end,
   dependencies = {
-    { 'nvim-tree/nvim-web-devicons' },
-    { 'nvim-treesitter/nvim-treesitter' },
+    { "nvim-tree/nvim-web-devicons" },
+    --Please make sure you install markdown and markdown_inline parser
+    { "nvim-treesitter/nvim-treesitter" },
   },
 }

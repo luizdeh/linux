@@ -1,10 +1,10 @@
 return {
-  'nvim-tree/nvim-tree.lua',
+  "nvim-tree/nvim-tree.lua",
   keys = {
-    { '<leader>t', ':NvimTreeToggle<CR>', { silent = true, desc = 'tree' } },
+    { "<leader>t", ":NvimTreeToggle<CR>", { silent = true, desc = "tree" } },
   },
   config = function()
-    require('nvim-tree').setup({
+    require("nvim-tree").setup({
       view = {
         adaptive_size = false,
         width = 35,
@@ -46,7 +46,7 @@ return {
             },
           },
         },
-      }
+      },
     })
   end,
 }
