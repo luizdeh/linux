@@ -1,22 +1,25 @@
 local o = vim.opt
+local g = vim.g
+
+g.mapleader = " "
 
 -- colors
 o.termguicolors = true
-o.background = 'dark'
+o.background = "dark"
 
 -- mouse and clipboard
-o.mouse = 'a'
-o.clipboard = 'unnamedplus'
+o.mouse = "a"
+o.clipboard = "unnamedplus"
 
 -- lsp/cmp
-o.completeopt = { 'menu', 'menuone', 'noselect' }
+o.completeopt = { "menu", "menuone", "noselect" }
 o.wildmenu = true
-o.wildignore = { '*/node_modules/**/*' }
-o.shortmess:append('c')
+o.wildignore = { "*/node_modules/**/*" }
+o.shortmess:append("c")
 
 -- file management
 o.autoread = true
-o.fileencoding = 'utf-8'
+o.fileencoding = "utf-8"
 o.hidden = true
 
 -- swap and backup
@@ -36,9 +39,17 @@ o.relativenumber = true
 o.wrap = false
 o.scrolloff = 8
 o.laststatus = 3
-o.signcolumn = 'yes'
+o.signcolumn = "yes"
 o.showmatch = true
 o.list = true
+
+-- folds
+-- o.foldmethod= 'indent'
+o.foldenable = true
+o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+o.foldcolumn = "1"
+o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+o.foldlevelstart = 99
 
 -- windows
 o.splitbelow = true
