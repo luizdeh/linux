@@ -6,7 +6,7 @@ return {
   config = function()
     require("nvim-tree").setup({
       view = {
-        adaptive_size = false,
+        adaptive_size = true,
         width = 35,
         signcolumn = "yes",
         preserve_window_proportions = true,

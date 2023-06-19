@@ -22,7 +22,7 @@ return {
             nls.builtins.formatting.shfmt,
             nls.builtins.diagnostics.ruff.with({ extra_args = { "--max-line-length=180" } }),
             nls.builtins.formatting.eslint_d,
-            nls.builtins.formatting.prettier,
+            nls.builtins.formatting.prettierd,
           },
         })
       end,
@@ -52,11 +52,11 @@ return {
         fields = { "menu", "abbr", "kind" },
         format = function(entry, item)
           local menu_icon = {
-            nvim_lsp = "",
-            buffer = "",
+            nvim_lsp = "ƒ",
+            buffer = "ß",
             path = "🖫",
-            luasnip = "⋗",
-            nvim_lua = "Π",
+            -- luasnip = '⋗',
+            -- nvim_lua = 'Π',
           }
           item.menu = menu_icon[entry.source.name]
           return item
@@ -69,7 +69,7 @@ return {
       local key = vim.keymap.set
       key("n", "gD", vim.lsp.buf.declaration, opts)
       key("n", "gd", vim.lsp.buf.definition, opts)
-      -- key("n", "K", vim.lsp.buf.hover, opts)
+      -- key('n', 'K', vim.lsp.buf.hover, opts)
       key("n", "gi", vim.lsp.buf.implementation, opts)
       key("n", "gs", vim.lsp.buf.signature_help, opts)
       key("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
@@ -79,8 +79,9 @@ return {
       end, opts)
       key("n", "gt", vim.lsp.buf.type_definition, opts)
       key("n", "gr", vim.lsp.buf.rename, opts)
+
       key("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-      -- key("n", "gh", vim.lsp.buf.references, opts)
+      -- key('n', 'gh', vim.lsp.buf.references, opts)
       key("n", "<leader>f", function()
         vim.lsp.buf.format({ async = true })
       end, opts)

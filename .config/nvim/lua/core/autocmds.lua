@@ -49,12 +49,12 @@ autocmd("BufReadPost", {
   end,
 })
 
--- remove some space from symbols outline
-local symbols_outline = augroup("FileTypeSettings", { clear = true })
-autocmd("FileType", {
-  pattern = "Outline",
-  callback = function()
-    vim.wo.signcolumn = "no"
-  end,
-  group = symbols_outline,
-})
+-- -- remove some space from symbols outline
+-- local symbols_outline = augroup("FileTypeSettings", { clear = true })
+-- autocmd("FileType", {
+--   pattern = "Outline",
+--   callback = function()
+--     vim.wo.signcolumn = "no"
+--   end,
+--   group = symbols_outline,
+-- })
