@@ -4,7 +4,6 @@ local hl = vim.api.nvim_set_hl
 
 function M.colors(name)
   local ret = {
-    vim.cmd("colorscheme " .. name),
     hl(0, "IndentBlankLineChar", { fg = "#484a4a" }),
     hl(0, "IndentBlankLineContextChar", { fg = "#909495" }),
     hl(0, "FidgetTask", { fg = "#5f6f67" }),

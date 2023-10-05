@@ -2,8 +2,8 @@ return {
   "NvChad/nvim-colorizer.lua",
   event = "BufReadPre",
   opts = {
-    filetypes = { '*', '!lazy' },
-    buftype = { '*', '!prompt', '!nofile' },
+    filetypes = { "css", "scss", "html", "javascript", "typescript", "typescriptreact", "javascriptreact", "!lazy" },
+    buftype = { "*", "!prompt", "!nofile" },
     user_default_options = {
       RGB = true,
       RRGGBB = true,
@@ -14,9 +14,9 @@ return {
       hsl_fn = true,
       css = true,
       css_fn = true,
-      sass = { enable = true, parsers = { css }, },
+      sass = { enable = true, parsers = { css } },
       tailwind = true,
-      mode = 'background',
+      mode = "background",
     },
     typescriptreact = { css = true },
   },

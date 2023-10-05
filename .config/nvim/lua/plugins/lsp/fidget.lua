@@ -1,7 +1,7 @@
 return {
   "j-hui/fidget.nvim",
   event = "BufRead",
-  opts = { tag = "legacy" },
+  tag = "legacy",
   config = function()
     require("fidget").setup({
       text = {

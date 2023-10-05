@@ -49,6 +49,9 @@ key("n", "N", "Nzzzv", opts("center screen when searching"))
 key("n", "<leader>[", ":bprev<CR>", opts("go to previous buffer"))
 key("n", "<leader>]", ":bnext<CR>", opts("go to next buffer"))
 
+-- close all buffers
+key("n", "<leader>bc", ":bufdo bd<CR>", opts("close all buffers"))
+
 -- window navigation
 key("n", "<leader><Left>", "<C-w>h", opts("move to left window"))
 key("n", "<leader><Down>", "<C-w>j", opts("move to lower window"))
@@ -104,9 +107,16 @@ key("v", ">", ">gv", opts("stay in visual mode after indenting"))
 -- lazy UI
 key("n", "<leader>l", ":Lazy<CR>", opts("lazy UI"))
 
+-- fugitive
+key("n", "<leader>gg", ":vertical Git<CR>", opts("git going"))
+
 -- nvim tree
-key("n", "<leader>t", ":NvimTreeToggle<CR>", opts("toggle nvim-tree"))
-key("n", "T", ":NvimTreeFocus<CR>", opts("focus nvim-tree"))
+-- key("n", "<leader>t", ":NvimTreeToggle<CR>", opts("toggle nvim-tree"))
+-- key("n", "T", ":NvimTreeFocus<CR>", opts("focus nvim-tree"))
+-- neotree
+key("n", "<leader>t", ":Neotree filesystem toggle<CR>", opts("toggle neotree"))
+-- key("n", "<leader>tb", ":Neotree buffers toggle<CR>", opts("toggle neotree buffers"))
+-- key("n", "<leader>tg", ":Neotree git_status toggle<CR>", opts("toggle neotree git-status"))
 
 -- undotree
 key("n", "<leader>u", ":UndotreeToggle<CR>", opts("toggle undotree"))
@@ -127,6 +137,7 @@ key("n", "<leader>:", ":Telescope command_history<CR>", opts("command history"))
 key("n", "<leader>fk", ":Telescope keymaps<CR>", opts("keymaps"))
 key("n", "<leader>fa", ":Telescope autocommands<CR>", opts("auto commands"))
 key("n", "<leader>fH", ":Telescope highlights<CR>", opts("highlight groups"))
+key("n", "<leader>fd", ":Telescope diagnostics<CR>", opts("diagnostics"))
 
 -- trouble
 key("n", "<leader>ew", ":TroubleToggle workspace_diagnostics<CR>", opts("trouble: workspace_diagnostics"))
@@ -145,9 +156,22 @@ key("n", "<leader>ft", ":TodoTelescope<CR>", opts("todo: telescope"))
 key("n", "<leader>et", ":TodoTrouble<CR>", opts("todo: trouble"))
 
 -- treesj
-key("n", "<leader>st", ":TSJToggle<CR>", opts("treesj: toggle"))
-key("n", "<leader>ss", ":TSJSplit<CR>", opts("treesj: split"))
-key("n", "<leader>sj", ":TSJJoinCR>", opts("treesj: join"))
+key("n", "<leader>s", ":TSJToggle<CR>", opts("treesj: toggle"))
+-- key("n", "<leader>ss", ":TSJSplit<CR>", opts("treesj: split"))
+-- key("n", "<leader>sj", ":TSJJoinCR>", opts("treesj: join"))
 
 -- markdown preview
 key("n", "<leader>mp", ":MarkdownPreviewToggle<CR>", opts("toggle markdown preview"))
+
+-- floating terminal
+key("n", "<F5>", ':lua require("FTerm").toggle()<CR>', opts("toggle floating terminal"))
+key("t", "<F5>", '<C-\\><C-n>:lua require("FTerm").toggle()<CR>', opts("toggle floating terminal"))
+
+-- organize imports in typescript
+key("n", "<F9>", ":OrganizeImports<CR>", opts("organise imports"))
+
+-- dadbod
+key({ "n", "x" }, "<F2>", ":DBUIToggle<CR>", opts("toggle dadbod UI"))
+key("x", "<leader>df", ":DBUIFindBuffer<CR>", opts("find dadbod buffer"))
+key("x", "<leader>dr", ":DBUIRenameBuffer<CR>", opts("rename dadbod buffer"))
+key("x", "<leader>di", ":DBUILastQueryInfo<CR>", opts("last query info"))

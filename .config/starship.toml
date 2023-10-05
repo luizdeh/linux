@@ -63,7 +63,7 @@ disabled = true
 [git_status]
 format = "[[|](bright-black) $all_status $ahead_behind]($style)"
 staged = "[ ${count}](green) "
-modified = "[ ${count}](yellow) "
+modified = "[✖ ${count}](yellow) "
 untracked = "[? ${count}](blue) "
 deleted = "[ ${count}](red) "
 ahead = "[ ${count}](bold yellow) "

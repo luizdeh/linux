@@ -1,0 +1,8 @@
+launch
+launch sh -c 'nvim ~/organizer.md'
+resize_window narrower 12
+launch sh -c 'btop'
+launch sh -c 'ncmpcpp'
+resize_window shorter 10
+
+enabled_layouts tall:bias=68;full_size=2;mirrored=true

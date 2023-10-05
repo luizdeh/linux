@@ -1,3 +1,3 @@
 #!/bin/sh
 
-i3lock -i ~/Images/Wallpapers/wp17 -L -k --time-str="%H:%M" --date-str="%A | %Y.%m.%d" --time-size=80 --date-size=20 --time-color=ffffffff --date-color=c0c0c0ff --time-pos="ix+250:iy+250" --radius=30 --ring-width=12 --verif-text="" --noinput-text="" --wrong-text="" --no-modkey-text
+i3lock -i ~/images/wallpapers/wp17 -L -k --time-str="%H:%M" --date-str="%A | %Y.%m.%d" --time-size=80 --date-size=20 --time-color=ffffffff --date-color=c0c0c0ff --time-pos="ix+250:iy+250" --radius=30 --ring-width=12 --verif-text="" --noinput-text="" --wrong-text="" --no-modkey-text

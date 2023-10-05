@@ -1,8 +1,8 @@
 return {
   "nvim-tree/nvim-tree.lua",
-  keys = {
-    { "<leader>t", ":NvimTreeToggle<CR>", { silent = true, desc = "tree" } },
-  },
+  -- keys = {
+  --   { "<leader>t", ":NvimTreeToggle<CR>", { silent = true, desc = "tree" } },
+  -- },
   config = function()
     require("nvim-tree").setup({
       view = {
@@ -24,6 +24,17 @@ return {
       update_cwd = true,
       renderer = {
         highlight_opened_files = "all",
+        indent_markers = {
+          enable = true,
+          inline_arrows = true,
+          icons = {
+            corner = "└",
+            edge = "│",
+            item = "│",
+            bottom = "─",
+            none = " ",
+          },
+        },
         icons = {
           git_placement = "signcolumn",
           padding = " ",

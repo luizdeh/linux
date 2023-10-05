@@ -1,6 +1,7 @@
 return {
-  'mbbill/undotree',
+  "mbbill/undotree",
+  event = "BufReadPost",
   keys = {
-    { "<leader>u", "<cmd>UndotreeToggle<CR>", desc = 'undo tree' },
+    { "<leader>u", "<cmd>UndotreeToggle<CR>", desc = "undo tree" },
   },
 }

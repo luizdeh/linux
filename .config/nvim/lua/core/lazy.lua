@@ -11,6 +11,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.g.mapleader = " "
+
 require("lazy").setup({
   { import = "plugins.cmp" },
   { import = "plugins.colors" },
@@ -19,6 +21,8 @@ require("lazy").setup({
   { import = "plugins.lsp" },
   { import = "plugins.navigation" },
   { import = "plugins.ui" },
+  { import = "plugins.db" },
+  -- install = { colorscheme = { "catppuccin-mocha" } },
   defaults = { lazy = true },
   checker = { enabled = false },
   performance = {
@@ -55,29 +59,3 @@ require("lazy").setup({
     },
   },
 })
-
--- vim.cmd("colorscheme gruvbox-material")
-
-require("core.colors").colors("catppuccin-mocha")
-
-local colors = vim.g.colors_name
-
-if colors == "nord" then
-  vim.api.nvim_set_hl(0, "Normal", { bg = "NONE", ctermbg = "NONE" })
-  vim.g.nord_italic = true
-  vim.g.nord_italic_comments = true
-  vim.g.nord_uniform_status_line = true
-  vim.g.nord_bold = true
-end
-
-if colors == "everforest" then
-  vim.g.everforest_transparent_background = 1
-  vim.g.everforest_better_performance = 1
-  vim.g.everforest_enable_italic = 1
-end
-
-if colors == "gruxbox_material" then
-  vim.g.gruvbox_material_transparent_background = 1
-  vim.g.gruvbox_material_enable_italic = 1
-  vim.g.gruvbox_material_better_performance = 1
-end

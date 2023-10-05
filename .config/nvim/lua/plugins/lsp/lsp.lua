@@ -5,7 +5,7 @@ return {
     { "neovim/nvim-lspconfig" },
     { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
-    { "glepnir/lspsaga.nvim" },
+    { "nvimdev/lspsaga.nvim" },
     {
       "jose-elias-alvarez/null-ls.nvim",
       event = "BufReadPre",
@@ -23,6 +23,7 @@ return {
             nls.builtins.diagnostics.ruff.with({ extra_args = { "--max-line-length=180" } }),
             nls.builtins.formatting.eslint_d,
             nls.builtins.formatting.prettierd,
+            nls.builtins.diagnostics.tsc,
           },
         })
       end,
@@ -91,7 +92,7 @@ return {
       key("n", "]s", vim.diagnostic.setloclist)
       -- saga
       key("n", "K", ":Lspsaga hover_doc<CR>", opts)
-      key("n", "gh", ":Lspsaga lsp_finder<CR>", opts)
+      key("n", "gh", ":Lspsaga finder<CR>", opts)
       key("n", "gp", ":Lspsaga peek_definition<CR>", opts)
       key("n", "<leader>o", ":Lspsaga outline<CR>", opts)
     end)
@@ -103,6 +104,38 @@ return {
           diagnostics = {
             globals = { "vim" },
           },
+        },
+      },
+    })
+
+    lsp.configure("cssls", {
+      settings = {
+        css = {
+          lint = {
+            unknownAtRules = "ignore",
+          },
+        },
+      },
+    })
+
+    local function organize_imports()
+      local params = {
+        command = "_typescript.organizeImports",
+        arguments = { vim.api.nvim_buf_get_name(0) },
+      }
+      vim.lsp.buf.execute_command(params)
+    end
+
+    lsp.configure("tsserver", {
+      init_options = {
+        preferences = {
+          disableSuggestions = true,
+        },
+      },
+      commands = {
+        OrganizeImports = {
+          organize_imports,
+          desc = "Organize Imports",
         },
       },
     })

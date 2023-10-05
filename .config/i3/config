@@ -42,8 +42,10 @@ $exec nm-applet
 # $exec ~/.fehbg
 $exec "sh -c 'sleep 1; sh $HOME/bin/startup'"
 $exec thunar --daemon
-$exec kitty --name="info" -e sh $HOME/bin/term
+$exec i3-msg 'workspace 1; exec kitty --session termtest.session'
+$exec blueberry-tray
 $exec setxkbmap br
+$exec kitty --name ncspot -e ncspot
 
 # modifiers
 set $mod Mod4
@@ -57,6 +59,11 @@ bindsym $mod+Shift+q kill
 
 # terminal
 bindsym $mod+Return $exec $TERMINAL
+bindsym $mod+Shift+Return $exec kitty --class floaterm
+
+# resize floating windows
+bindsym $mod+$mod1+t resize set width 600 height 100
+bindsym $mod+$mod1+r resize set width 800 height 600
 
 # launchers
 bindsym $mod+d $exec dmenu_run
@@ -72,10 +79,10 @@ bindsym $mod+Insert $exec sh ~/bin/lock
 # applications
 bindsym $mod+b $exec firefox
 bindsym $mod+t $exec thunar
-bindsym $mod+m $exec kitty --name="ncm" -e ncmpcpp
 
 # screen temperature
 bindsym $mod+Shift+n $exec xsct 3000
+bindsym $mod+Shift+m $exec xsct 2200
 bindsym $mod1+Shift+n $exec xsct 0
 
 # toggles
@@ -104,6 +111,46 @@ bindsym XF86AudioMute $exec pactl set-sink-mute 0 toggle
 bindsym XF86MonBrightnessUp $exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown $exec xbacklight -dec 10
 
+# system windows
+for_window [all] border pixel
+for_window [urgent=latest] focus
+for_window [class="[.]*"] floating enable
+for_window [window_role="[.]*"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="splash"] floating enable
+for_window [window_type="tooltip"] floating enable
+for_window [window_type="notification"] floating enable
+
+# workspace assignments
+for_window [instance="info"] move container to workspace 1
+assign [class="firefox"] 2
+assign [class="Code"] 4
+assign [class="Chromium"] 5
+assign [class="Thunar"] 7
+assign [class="mtga"] 6
+
+# misc
+for_window [class="Lxappearance"] sticky enable
+for_window [instance="ncspot"] move scratchpad
+for_window [instance="floaterm"] floating enable, resize set width 1200 height 900, position center
+
+# disable floating
+for_window [class="firefox" window_role="browser"] floating disable
+for_window [class="Chromium$" window_role="browser"] floating disable
+for_window [class="Thunar$" window_type="normal"] floating disable
+for_window [class="Code$"] floating disable
+for_window [class="mtga.exe"] floating disable
+for_window [class="^Zathura$"] floating disable
+for_window [class="kitty$"] floating disable
+for_window [class="libreoffice"] floating disable
+for_window [class="pokerstars.exe"] floating disable
+
+# workspaces
+bindsym $mod1+Tab workspace back_and_forth
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+bindsym $mod+x move workspace to output next
+
 # focus
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -114,6 +161,12 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
+# resize
+bindsym $mod+$mod1+Left resize shrink width 50 px
+bindsym $mod+$mod1+Down resize grow height 50 px
+bindsym $mod+$mod1+Up resize shrink height 50 px
+bindsym $mod+$mod1+Right resize grow width 50 px
+
 # move containers
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
@@ -123,12 +176,6 @@ bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
-
-# resize
-bindsym $mod+$mod1+Left resize shrink width 50 px
-bindsym $mod+$mod1+Down resize grow height 50 px
-bindsym $mod+$mod1+Up resize shrink height 50 px
-bindsym $mod+$mod1+Right resize grow width 50 px
 
 # workspace output
 set $left eDP1
@@ -143,12 +190,6 @@ workspace 7 output $left
 workspace 8 output $right
 workspace 9 output $left
 workspace 10 output $right
-
-# workspaces
-bindsym $mod1+Tab workspace back_and_forth
-bindsym $mod+Tab workspace next
-bindsym $mod+Shift+Tab workspace prev
-bindsym $mod+x move workspace to output next
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -173,35 +214,3 @@ bindsym $mod+Shift+7 move container to workspace 7; workspace 7
 bindsym $mod+Shift+8 move container to workspace 8; workspace 8
 bindsym $mod+Shift+9 move container to workspace 9; workspace 9
 bindsym $mod+Shift+0 move container to workspace 10; workspace 10
-
-# system windows
-for_window [all] border pixel
-for_window [urgent=latest] focus
-for_window [class="[.]*"] floating enable
-for_window [window_role="[.]*"] floating enable
-for_window [window_type="dialog"] floating enable
-for_window [window_type="splash"] floating enable
-for_window [window_type="tooltip"] floating enable
-for_window [window_type="notification"] floating enable
-
-# workspace assignments
-for_window [instance="info"] move container to workspace 1
-assign [class="firefox"] 2
-assign [class="Code"] 4
-assign [class="Chromium"] 5
-assign [class="Thunar"] 7
-assign [class="mtga"] 6
-
-# misc
-for_window [class="Lxappearance"] sticky enable
-
-# disable floating
-for_window [class="firefox" window_role="browser"] floating disable
-for_window [class="Chromium$" window_role="browser"] floating disable
-for_window [class="Thunar$" window_type="normal"] floating disable
-for_window [class="Code$"] floating disable
-for_window [class="mtga.exe"] floating disable
-for_window [class="^Zathura$"] floating disable
-for_window [class="kitty$"] floating disable
-for_window [class="libreoffice"] floating disable
-for_window [class="pokerstars.exe"] floating disable

@@ -6,7 +6,7 @@ export BROWSER=chromium
 
 # path
 export PATH="${PATH}:/home/deh/bin"
-export PATH="${PATH}:/home/deh/.config/rofi/bin"
+export PATH="${PATH}:/home/deh/.config/rofi"
 export PATH="${PATH}:/home/deh/.local/bin"
 
 # fzf

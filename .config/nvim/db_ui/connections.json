@@ -1,0 +1,1 @@
+[{"url": "mysql://root:123@localhost:3306/dpoker", "name": "dpoker"}, {"url": "mysql://root@123/poker", "name": "poker"}]

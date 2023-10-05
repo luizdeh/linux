@@ -1,7 +1,4 @@
 local o = vim.opt
-local g = vim.g
-
-g.mapleader = " "
 
 -- colors
 o.termguicolors = true
@@ -52,8 +49,8 @@ o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease
 o.foldlevelstart = 99
 
 -- windows
-o.splitbelow = true
 o.splitright = true
+o.splitbelow = true
 
 -- tabs and spaces
 o.tabstop = 2

@@ -3,6 +3,8 @@ local augroup = vim.api.nvim_create_augroup
 
 local highlight_group = augroup("YankHighlight", { clear = true })
 
+local markdown_group = augroup("Markdown", { clear = true })
+
 -- clear whitespace
 autocmd("BufWritePre", {
   pattern = { "*" },
@@ -25,18 +27,6 @@ autocmd("BufWritePre", {
   end,
 })
 
--- highlight current buffer in nvim-tree
-local group = vim.api.nvim_create_augroup("HighlightThatShit", { clear = true })
-vim.api.nvim_create_autocmd("BufEnter", {
-  callback = function()
-    local is_tree_open = require("nvim-tree.view").is_visible()
-    if is_tree_open then
-      require("nvim-tree.api").tree.find_file()
-    end
-  end,
-  group = group,
-})
-
 -- go to last loc when opening a buffer
 autocmd("BufReadPost", {
   -- group = augroup("last_loc"),
@@ -49,12 +39,20 @@ autocmd("BufReadPost", {
   end,
 })
 
--- -- remove some space from symbols outline
--- local symbols_outline = augroup("FileTypeSettings", { clear = true })
--- autocmd("FileType", {
---   pattern = "Outline",
+autocmd("FileType", {
+  pattern = { "*.md" },
+  group = markdown_group,
+  command = "setlocal wrap",
+})
+
+-- -- highlight current buffer in nvim-tree
+-- local group = vim.api.nvim_create_augroup("HighlightThatShit", { clear = true })
+-- vim.api.nvim_create_autocmd("BufEnter", {
 --   callback = function()
---     vim.wo.signcolumn = "no"
+--     local is_tree_open = require("nvim-tree.view").is_visible()
+--     if is_tree_open then
+--       require("nvim-tree.api").tree.find_file()
+--     end
 --   end,
---   group = symbols_outline,
+--   group = group,
 -- })

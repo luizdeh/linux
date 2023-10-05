@@ -24,10 +24,16 @@ options="$option0\n$option1\n$option2"
 # menu
 chosen="$(echo -e "$options" | rofi -theme ~/.config/rofi/screenshot.rasi -dmenu)"
 case $chosen in
-  $option0)
-    sleep 1; maim -su  "$HOME/Images/Screenshots/$(date +%s).png" && notify-send "screenshot saved";;
-  $option1)
-    sleep 1; maim -i $(xdotool getactivewindow) "$HOME/Images/Screenshots/$(date +%s).png" && notify-send "screenshot saved";;
-  $option2)
-    sleep 1; maim "$HOME/Images/Screenshots/$(date +%s).png" && notify-send "screenshot saved";;
+$option0)
+	sleep 1
+	maim -su "$HOME/images/screenshots/$(date +%s).png" && notify-send "screenshot saved"
+	;;
+$option1)
+	sleep 1
+	maim -i $(xdotool getactivewindow) "$HOME/images/screenshots/$(date +%s).png" && notify-send "screenshot saved"
+	;;
+$option2)
+	sleep 1
+	maim "$HOME/images/screenshots/$(date +%s).png" && notify-send "screenshot saved"
+	;;
 esac
